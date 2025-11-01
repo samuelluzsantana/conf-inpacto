@@ -32,6 +32,8 @@ export default {
       backgroundImage: {
         "inpacto-gradient":
           "linear-gradient(90deg, #FF8F44 0%, #FA1462 20%, #E23973 40%, #35126A 60%, #4DC1E7 100%)",
+        "inpacto-gradient-fade":
+          "linear-gradient(90deg, transparent 0%, #FF8F44 10%, #FA1462 25%, #E23973 45%, #35126A 65%, #4DC1E7 100%)",
       },
     },
   },

@@ -4,6 +4,7 @@ import LocationSection from "./components/LocationSection";
 import FAQSection from "./components/FAQSection";
 import SpeakersSection from "./components/SpeakersSection";
 import Footer from "./components/Footer";
+import metroBackground from "./assets/backgrounds/metro-background.avif";
 
 function MainContent() {
   return (
@@ -11,7 +12,10 @@ function MainContent() {
       {/* Seção: INÍCIO */}
       <section
         id="inicio"
-        className="from-inpacto-orange to-inpacto-pink flex min-h-screen scroll-mt-16 items-center justify-center bg-gradient-to-br sm:scroll-mt-20"
+        className="relative flex min-h-screen scroll-mt-16 items-center justify-center bg-cover bg-center bg-no-repeat sm:scroll-mt-20"
+        style={{
+          backgroundImage: `linear-gradient(90deg, transparent 0%, #FF8F44 10%, #FA1462 25%, #E23973 45%, #35126A 65%, #4DC1E7 100%), url(${metroBackground})`,
+        }}
       >
         <div className="px-4 text-center text-white sm:px-6">
           <h1 className="mb-4 text-4xl font-bold sm:text-5xl lg:text-6xl">
