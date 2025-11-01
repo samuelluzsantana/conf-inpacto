@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import LocationSection from "./components/LocationSection";
+import FAQSection from "./components/FAQSection";
 
 function MainContent() {
   return (
@@ -66,15 +67,9 @@ function MainContent() {
       </div>
 
       {/* Seção: FAQ */}
-      <section
-        id="faq"
-        className="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-500 to-blue-500"
-      >
-        <div className="px-4 text-center text-white">
-          <h1 className="mb-4 text-6xl font-bold">FAQ</h1>
-          <p className="text-xl">Perguntas frequentes</p>
-        </div>
-      </section>
+      <div id="faq">
+        <FAQSection />
+      </div>
     </>
   );
 }

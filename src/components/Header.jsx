@@ -5,6 +5,7 @@ import {
   useDocumentTitle,
   getTitleFromPath,
 } from "../hooks/useDocumentTitle.ts";
+import { useActiveSection } from "../hooks/useActiveSection";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -48,6 +49,29 @@ const Header = () => {
     },
     { name: "FAQ", href: "#faq", path: "/faq", slug: "faq" },
   ];
+
+  // Detecta a seção ativa baseada no scroll
+  const sectionIds = navLinks.map((link) => link.slug);
+  const activeSectionId = useActiveSection(sectionIds, 150);
+
+  // Atualiza o activeLink e o título quando a seção ativa mudar no scroll
+  useEffect(() => {
+    const currentIndex = navLinks.findIndex(
+      (link) => link.slug === activeSectionId,
+    );
+
+    if (currentIndex !== -1 && currentIndex !== activeLink) {
+      setPrevIndex(activeLink);
+      setActiveLink(currentIndex);
+
+      // Atualiza a URL sem fazer scroll
+      const newPath = navLinks[currentIndex].path;
+      if (location.pathname !== newPath) {
+        navigate(newPath, { replace: true });
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeSectionId]);
 
   // Atualiza o link ativo baseado na URL atual
   useEffect(() => {

@@ -29,18 +29,18 @@ export const useDocumentTitle = (
  * Mapeamento de slugs para títulos de página
  */
 export const PAGE_TITLES: Record<string, string> = {
-  inicio: "Home",
-  conferencia: "Conferência",
+  inicio: "Início",
+  conferencia: "A Conferência",
   bandas: "Bandas",
   convidados: "Convidados",
-  "programe-se": "Programação",
+  "programe-se": "Programe-se",
   localizacao: "Localização",
   faq: "FAQ",
 };
 
 /**
- * Obtém o título da página baseado no pathname
- * @param pathname - O pathname da rota atual
+ * Obtém o título da página baseado no pathname ou slug
+ * @param pathname - O pathname da rota atual ou slug da seção
  * @returns O título correspondente
  */
 export const getTitleFromPath = (pathname: string): string => {
