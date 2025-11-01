@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
+import LocationSection from "./components/LocationSection";
 
 function MainContent() {
   return (
@@ -60,15 +61,9 @@ function MainContent() {
       </section>
 
       {/* Seção: LOCALIZAÇÃO */}
-      <section
-        id="localizacao"
-        className="flex min-h-screen items-center justify-center bg-gradient-to-br from-yellow-500 to-green-500"
-      >
-        <div className="px-4 text-center text-white">
-          <h1 className="mb-4 text-6xl font-bold">LOCALIZAÇÃO</h1>
-          <p className="text-xl">Como chegar ao evento</p>
-        </div>
-      </section>
+      <div id="localizacao">
+        <LocationSection />
+      </div>
 
       {/* Seção: FAQ */}
       <section
