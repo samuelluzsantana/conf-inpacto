@@ -1,6 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import LogoIcon from "./Logo";
+import {
+  useDocumentTitle,
+  getTitleFromPath,
+} from "../hooks/useDocumentTitle.ts";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -10,6 +14,10 @@ const Header = () => {
   const navRef = useRef(null);
   const location = useLocation();
   const navigate = useNavigate();
+
+  // Atualiza o título da página dinamicamente
+  const currentTitle = getTitleFromPath(location.pathname);
+  useDocumentTitle(currentTitle);
 
   const navLinks = [
     { name: "INÍCIO", href: "#inicio", path: "/", slug: "inicio" },
