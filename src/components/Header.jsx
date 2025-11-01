@@ -172,7 +172,7 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 bg-gray-900/95 shadow-lg backdrop-blur-md transition-transform duration-300 ease-in-out will-change-transform ${
+      className={`bg-inpacto-purple/95 fixed inset-x-0 top-0 z-50 shadow-lg backdrop-blur-md transition-transform duration-300 ease-in-out will-change-transform ${
         isHeaderVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
@@ -196,7 +196,7 @@ const Header = () => {
           <button
             type="button"
             onClick={() => setIsMobileMenuOpen(true)}
-            className="-m-2 inline-flex items-center justify-center rounded-lg p-2.5 text-gray-400 transition-all hover:bg-gray-800 hover:text-white active:scale-95"
+            className="text-inpacto-sky hover:bg-inpacto-purple/60 -m-2 inline-flex items-center justify-center rounded-lg p-2.5 transition-all hover:text-white active:scale-95"
             aria-label="Abrir menu"
           >
             <span className="sr-only">Open main menu</span>
@@ -226,8 +226,8 @@ const Header = () => {
               onClick={(e) => scrollToSection(e, link, index)}
               className={`relative px-1 py-2 text-sm font-semibold transition-colors duration-200 ${
                 activeLink === index
-                  ? "text-indigo-400"
-                  : "text-white hover:text-gray-300"
+                  ? "text-inpacto-sky"
+                  : "hover:text-inpacto-orange text-white"
               }`}
             >
               {link.name}
@@ -236,7 +236,7 @@ const Header = () => {
 
           {/* Animated underline */}
           <span
-            className={`absolute bottom-0 h-0.5 bg-indigo-400 ${getTransitionClass()}`}
+            className={`bg-inpacto-sky absolute bottom-0 h-0.5 ${getTransitionClass()}`}
             style={underlineStyle}
           />
         </div>
@@ -258,9 +258,9 @@ const Header = () => {
 
             {/* Slide-in panel */}
             <div className="fixed inset-y-0 right-0 z-[61] flex w-full max-w-sm">
-              <div className="relative flex w-full flex-col overflow-y-auto bg-gray-900 shadow-2xl">
+              <div className="bg-inpacto-purple relative flex w-full flex-col overflow-y-auto shadow-2xl">
                 {/* Header do menu mobile */}
-                <div className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-800 bg-gray-900/95 px-4 py-4 backdrop-blur-sm sm:px-6">
+                <div className="border-inpacto-magenta/30 bg-inpacto-purple/95 sticky top-0 z-10 flex items-center justify-between border-b px-4 py-4 backdrop-blur-sm sm:px-6">
                   <a
                     href="/"
                     onClick={(e) => scrollToSection(e, navLinks[0], 0)}
@@ -271,7 +271,7 @@ const Header = () => {
                   <button
                     type="button"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="-m-2 inline-flex items-center justify-center rounded-lg p-2.5 text-gray-400 transition-all hover:bg-gray-800 hover:text-white active:scale-95"
+                    className="text-inpacto-sky hover:bg-inpacto-purple/60 -m-2 inline-flex items-center justify-center rounded-lg p-2.5 transition-all hover:text-white active:scale-95"
                     aria-label="Fechar menu"
                   >
                     <span className="sr-only">Close menu</span>
@@ -302,14 +302,14 @@ const Header = () => {
                         onClick={(e) => scrollToSection(e, link, index)}
                         className={`active:scale-98 flex items-center rounded-xl px-4 py-3.5 text-base font-semibold transition-all ${
                           activeLink === index
-                            ? "bg-indigo-500/20 text-indigo-400 shadow-sm ring-1 ring-indigo-500/30"
-                            : "text-gray-100 hover:bg-gray-800/60 hover:text-white active:bg-gray-800"
+                            ? "bg-inpacto-sky/20 text-inpacto-sky ring-inpacto-sky/30 shadow-sm ring-1"
+                            : "hover:bg-inpacto-purple/60 active:bg-inpacto-purple/80 text-gray-100 hover:text-white"
                         }`}
                       >
                         <span>{link.name}</span>
                         {activeLink === index && (
                           <svg
-                            className="ml-auto h-5 w-5 text-indigo-400"
+                            className="text-inpacto-sky ml-auto h-5 w-5"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                           ></svg>
@@ -320,8 +320,8 @@ const Header = () => {
                 </nav>
 
                 {/* Footer do menu (opcional) */}
-                <div className="border-t border-gray-800 p-4 sm:p-6">
-                  <p className="text-center text-sm text-gray-500">
+                <div className="border-inpacto-magenta/30 border-t p-4 sm:p-6">
+                  <p className="text-inpacto-sky/70 text-center text-sm">
                     Conferência Inpacto 2025
                   </p>
                 </div>

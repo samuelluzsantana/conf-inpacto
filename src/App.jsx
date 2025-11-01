@@ -9,7 +9,7 @@ function MainContent() {
       {/* Seção: INÍCIO */}
       <section
         id="inicio"
-        className="flex min-h-screen scroll-mt-16 items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 sm:scroll-mt-20"
+        className="from-inpacto-orange to-inpacto-pink flex min-h-screen scroll-mt-16 items-center justify-center bg-gradient-to-br sm:scroll-mt-20"
       >
         <div className="px-4 text-center text-white sm:px-6">
           <h1 className="mb-4 text-4xl font-bold sm:text-5xl lg:text-6xl">
@@ -22,7 +22,7 @@ function MainContent() {
       {/* Seção: A CONFERÊNCIA */}
       <section
         id="conferencia"
-        className="flex min-h-screen scroll-mt-16 items-center justify-center bg-gradient-to-br from-purple-600 to-pink-500 sm:scroll-mt-20"
+        className="from-inpacto-pink to-inpacto-magenta flex min-h-screen scroll-mt-16 items-center justify-center bg-gradient-to-br sm:scroll-mt-20"
       >
         <div className="px-4 text-center text-white sm:px-6">
           <h1 className="mb-4 text-4xl font-bold sm:text-5xl lg:text-6xl">
@@ -35,7 +35,7 @@ function MainContent() {
       {/* Seção: BANDAS */}
       <section
         id="bandas"
-        className="flex min-h-screen scroll-mt-16 items-center justify-center bg-gradient-to-br from-pink-500 to-red-500 sm:scroll-mt-20"
+        className="from-inpacto-magenta to-inpacto-purple flex min-h-screen scroll-mt-16 items-center justify-center bg-gradient-to-br sm:scroll-mt-20"
       >
         <div className="px-4 text-center text-white sm:px-6">
           <h1 className="mb-4 text-4xl font-bold sm:text-5xl lg:text-6xl">
@@ -48,7 +48,7 @@ function MainContent() {
       {/* Seção: CONVIDADOS */}
       <section
         id="convidados"
-        className="flex min-h-screen scroll-mt-16 items-center justify-center bg-gradient-to-br from-red-500 to-orange-500 sm:scroll-mt-20"
+        className="from-inpacto-purple to-inpacto-sky flex min-h-screen scroll-mt-16 items-center justify-center bg-gradient-to-br sm:scroll-mt-20"
       >
         <div className="px-4 text-center text-white sm:px-6">
           <h1 className="mb-4 text-4xl font-bold sm:text-5xl lg:text-6xl">
@@ -63,7 +63,7 @@ function MainContent() {
       {/* Seção: PROGRAME-SE */}
       <section
         id="programe-se"
-        className="flex min-h-screen scroll-mt-16 items-center justify-center bg-gradient-to-br from-orange-500 to-yellow-500 sm:scroll-mt-20"
+        className="bg-inpacto-gradient flex min-h-screen scroll-mt-16 items-center justify-center sm:scroll-mt-20"
       >
         <div className="px-4 text-center text-white sm:px-6">
           <h1 className="mb-4 text-4xl font-bold sm:text-5xl lg:text-6xl">
