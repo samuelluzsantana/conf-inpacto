@@ -1,11 +1,15 @@
 {
   "dependencies": {
+    "embla-carousel": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
     "lucide-react": "^0.552.0",
+    "prop-types": "^15.8.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.9.5",
     "react-scroll": "^1.9.3",
-    "smooth-scroll-into-view-if-needed": "^2.0.2"
+    "smooth-scroll-into-view-if-needed": "^2.0.2",
+    "swiper": "^12.0.3"
   },
   "devDependencies": {
     "@types/react": "^19.0.2",
