@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { useLocation, useNavigate } from "react-router-dom";
 import LogoIcon from "./Logo";
 import {
@@ -6,6 +7,7 @@ import {
   getTitleFromPath,
 } from "../hooks/useDocumentTitle.ts";
 import { useActiveSection } from "../hooks/useActiveSection";
+import { useScrollDirection } from "../hooks/useScrollDirection";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -150,18 +152,40 @@ const Header = () => {
       : "transition-all duration-300 ease-out";
   };
 
+  // Smart scroll header visibility: visible at top or when scrolling up; hidden on scroll down
+  const { direction, isTop } = useScrollDirection({
+    topThreshold: 100,
+    delta: 2,
+  });
+  const isHeaderVisible = isTop || direction === "up" || isMobileMenuOpen;
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prev;
+      };
+    }
+  }, [isMobileMenuOpen]);
+
   return (
-    <header className="sticky top-0 z-50 bg-gray-900 shadow-lg">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 bg-gray-900/95 shadow-lg backdrop-blur-md transition-transform duration-300 ease-in-out will-change-transform ${
+        isHeaderVisible ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       <nav
         aria-label="Global"
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        className="mx-auto flex max-w-7xl items-center justify-between px-4 py-6 sm:px-6 lg:px-8 lg:py-12"
       >
         {/* Logo */}
         <div className="flex lg:flex-1">
           <a
             href="/"
             onClick={(e) => scrollToSection(e, navLinks[0], 0)}
-            className="-m-1.5 p-1.5"
+            className="-m-1.5 p-1.5 transition-opacity hover:opacity-80"
           >
             <LogoIcon color="white" size="default" />
           </a>
@@ -172,16 +196,17 @@ const Header = () => {
           <button
             type="button"
             onClick={() => setIsMobileMenuOpen(true)}
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400 transition-colors hover:text-white"
+            className="-m-2 inline-flex items-center justify-center rounded-lg p-2.5 text-gray-400 transition-all hover:bg-gray-800 hover:text-white active:scale-95"
+            aria-label="Abrir menu"
           >
             <span className="sr-only">Open main menu</span>
             <svg
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              strokeWidth="1.5"
+              strokeWidth="2"
               aria-hidden="true"
-              className="size-6"
+              className="h-6 w-6"
             >
               <path
                 d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
@@ -193,7 +218,7 @@ const Header = () => {
         </div>
 
         {/* Desktop navigation */}
-        <div className="relative hidden lg:flex lg:gap-x-8" ref={navRef}>
+        <div className="relative hidden lg:flex lg:gap-x-4" ref={navRef}>
           {navLinks.map((link, index) => (
             <a
               key={link.name}
@@ -220,70 +245,91 @@ const Header = () => {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end"></div>
       </nav>
 
-      {/* Mobile menu */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden">
-          <div className="fixed inset-0 z-50">
+      {/* Mobile menu (portal to escape header transform) */}
+      {isMobileMenuOpen &&
+        createPortal(
+          <div className="lg:hidden">
+            {/* Backdrop with slide-in animation */}
             <div
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm"
+              className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm transition-opacity duration-300 ease-out"
               onClick={() => setIsMobileMenuOpen(false)}
+              aria-hidden="true"
             />
-            <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-100/10">
-              <div className="flex items-center justify-between">
-                <a
-                  href="/"
-                  onClick={(e) => scrollToSection(e, navLinks[0], 0)}
-                  className="-m-1.5 p-1.5"
-                >
-                  <LogoIcon color="white" size="default" icon={true} />
-                </a>
-                <button
-                  type="button"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="-m-2.5 rounded-md p-2.5 text-gray-400 transition-colors hover:text-white"
-                >
-                  <span className="sr-only">Close menu</span>
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    aria-hidden="true"
-                    className="size-6"
-                  >
-                    <path
-                      d="M6 18 18 6M6 6l12 12"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
-              </div>
 
-              <div className="mt-6 flow-root">
-                <div className="-my-6">
-                  <div className="space-y-2 py-6">
+            {/* Slide-in panel */}
+            <div className="fixed inset-y-0 right-0 z-[61] flex w-full max-w-sm">
+              <div className="relative flex w-full flex-col overflow-y-auto bg-gray-900 shadow-2xl">
+                {/* Header do menu mobile */}
+                <div className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-800 bg-gray-900/95 px-4 py-4 backdrop-blur-sm sm:px-6">
+                  <a
+                    href="/"
+                    onClick={(e) => scrollToSection(e, navLinks[0], 0)}
+                    className="-m-1.5 p-1.5 transition-opacity hover:opacity-80"
+                  >
+                    <LogoIcon color="white" size="default" icon={true} />
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="-m-2 inline-flex items-center justify-center rounded-lg p-2.5 text-gray-400 transition-all hover:bg-gray-800 hover:text-white active:scale-95"
+                    aria-label="Fechar menu"
+                  >
+                    <span className="sr-only">Close menu</span>
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      aria-hidden="true"
+                      className="h-6 w-6"
+                    >
+                      <path
+                        d="M6 18 18 6M6 6l12 12"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Navigation Links */}
+                <nav className="flex-1 px-4 py-6 sm:px-6">
+                  <div className="space-y-1">
                     {navLinks.map((link, index) => (
                       <a
                         key={link.name}
                         href={link.path}
                         onClick={(e) => scrollToSection(e, link, index)}
-                        className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold transition-colors ${
+                        className={`active:scale-98 flex items-center rounded-xl px-4 py-3.5 text-base font-semibold transition-all ${
                           activeLink === index
-                            ? "bg-white/5 text-indigo-400"
-                            : "text-white hover:bg-white/5"
+                            ? "bg-indigo-500/20 text-indigo-400 shadow-sm ring-1 ring-indigo-500/30"
+                            : "text-gray-100 hover:bg-gray-800/60 hover:text-white active:bg-gray-800"
                         }`}
                       >
-                        {link.name}
+                        <span>{link.name}</span>
+                        {activeLink === index && (
+                          <svg
+                            className="ml-auto h-5 w-5 text-indigo-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          ></svg>
+                        )}
                       </a>
                     ))}
                   </div>
+                </nav>
+
+                {/* Footer do menu (opcional) */}
+                <div className="border-t border-gray-800 p-4 sm:p-6">
+                  <p className="text-center text-sm text-gray-500">
+                    Conferência Inpacto 2025
+                  </p>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body,
+        )}
     </header>
   );
 };

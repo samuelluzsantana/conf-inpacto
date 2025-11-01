@@ -9,65 +9,77 @@ function MainContent() {
       {/* Seção: INÍCIO */}
       <section
         id="inicio"
-        className="flex min-h-screen items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600"
+        className="flex min-h-screen scroll-mt-16 items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 sm:scroll-mt-20"
       >
-        <div className="px-4 text-center text-white">
-          <h1 className="mb-4 text-6xl font-bold">INÍCIO</h1>
-          <p className="text-xl">Bem-vindo à conferência</p>
+        <div className="px-4 text-center text-white sm:px-6">
+          <h1 className="mb-4 text-4xl font-bold sm:text-5xl lg:text-6xl">
+            INÍCIO
+          </h1>
+          <p className="text-lg sm:text-xl">Bem-vindo à conferência</p>
         </div>
       </section>
 
       {/* Seção: A CONFERÊNCIA */}
       <section
         id="conferencia"
-        className="flex min-h-screen items-center justify-center bg-gradient-to-br from-purple-600 to-pink-500"
+        className="flex min-h-screen scroll-mt-16 items-center justify-center bg-gradient-to-br from-purple-600 to-pink-500 sm:scroll-mt-20"
       >
-        <div className="px-4 text-center text-white">
-          <h1 className="mb-4 text-6xl font-bold">A CONFERÊNCIA</h1>
-          <p className="text-xl">Informações sobre o evento</p>
+        <div className="px-4 text-center text-white sm:px-6">
+          <h1 className="mb-4 text-4xl font-bold sm:text-5xl lg:text-6xl">
+            A CONFERÊNCIA
+          </h1>
+          <p className="text-lg sm:text-xl">Informações sobre o evento</p>
         </div>
       </section>
 
       {/* Seção: BANDAS */}
       <section
         id="bandas"
-        className="flex min-h-screen items-center justify-center bg-gradient-to-br from-pink-500 to-red-500"
+        className="flex min-h-screen scroll-mt-16 items-center justify-center bg-gradient-to-br from-pink-500 to-red-500 sm:scroll-mt-20"
       >
-        <div className="px-4 text-center text-white">
-          <h1 className="mb-4 text-6xl font-bold">BANDAS</h1>
-          <p className="text-xl">Conheça as bandas que vão tocar</p>
+        <div className="px-4 text-center text-white sm:px-6">
+          <h1 className="mb-4 text-4xl font-bold sm:text-5xl lg:text-6xl">
+            BANDAS
+          </h1>
+          <p className="text-lg sm:text-xl">Conheça as bandas que vão tocar</p>
         </div>
       </section>
 
       {/* Seção: CONVIDADOS */}
       <section
         id="convidados"
-        className="flex min-h-screen items-center justify-center bg-gradient-to-br from-red-500 to-orange-500"
+        className="flex min-h-screen scroll-mt-16 items-center justify-center bg-gradient-to-br from-red-500 to-orange-500 sm:scroll-mt-20"
       >
-        <div className="px-4 text-center text-white">
-          <h1 className="mb-4 text-6xl font-bold">CONVIDADOS</h1>
-          <p className="text-xl">Palestrantes e convidados especiais</p>
+        <div className="px-4 text-center text-white sm:px-6">
+          <h1 className="mb-4 text-4xl font-bold sm:text-5xl lg:text-6xl">
+            CONVIDADOS
+          </h1>
+          <p className="text-lg sm:text-xl">
+            Palestrantes e convidados especiais
+          </p>
         </div>
       </section>
 
       {/* Seção: PROGRAME-SE */}
       <section
         id="programe-se"
-        className="flex min-h-screen items-center justify-center bg-gradient-to-br from-orange-500 to-yellow-500"
+        className="flex min-h-screen scroll-mt-16 items-center justify-center bg-gradient-to-br from-orange-500 to-yellow-500 sm:scroll-mt-20"
       >
-        <div className="px-4 text-center text-white">
-          <h1 className="mb-4 text-6xl font-bold">PROGRAME-SE</h1>
-          <p className="text-xl">Confira a programação completa</p>
+        <div className="px-4 text-center text-white sm:px-6">
+          <h1 className="mb-4 text-4xl font-bold sm:text-5xl lg:text-6xl">
+            PROGRAME-SE
+          </h1>
+          <p className="text-lg sm:text-xl">Confira a programação completa</p>
         </div>
       </section>
 
       {/* Seção: LOCALIZAÇÃO */}
-      <div id="localizacao">
+      <div id="localizacao" className="scroll-mt-16 sm:scroll-mt-20">
         <LocationSection />
       </div>
 
       {/* Seção: FAQ */}
-      <div id="faq">
+      <div id="faq" className="scroll-mt-16 sm:scroll-mt-20">
         <FAQSection />
       </div>
     </>
@@ -78,15 +90,18 @@ function App() {
   return (
     <Router>
       <Header />
-      <Routes>
-        <Route path="/" element={<MainContent />} />
-        <Route path="/conferencia" element={<MainContent />} />
-        <Route path="/bandas" element={<MainContent />} />
-        <Route path="/convidados" element={<MainContent />} />
-        <Route path="/programe-se" element={<MainContent />} />
-        <Route path="/localizacao" element={<MainContent />} />
-        <Route path="/faq" element={<MainContent />} />
-      </Routes>
+      {/* Offset content for fixed header (mobile-first) */}
+      <div className="pt-14 sm:pt-16 lg:pt-[1em]">
+        <Routes>
+          <Route path="/" element={<MainContent />} />
+          <Route path="/conferencia" element={<MainContent />} />
+          <Route path="/bandas" element={<MainContent />} />
+          <Route path="/convidados" element={<MainContent />} />
+          <Route path="/programe-se" element={<MainContent />} />
+          <Route path="/localizacao" element={<MainContent />} />
+          <Route path="/faq" element={<MainContent />} />
+        </Routes>
+      </div>
     </Router>
   );
 }
