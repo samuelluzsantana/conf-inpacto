@@ -1,0 +1,30 @@
+.curved-loop-jacket {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  min-height: auto;
+  padding-top: 0;
+}
+
+.curved-loop-svg {
+  user-select: none;
+  width: 100%;
+  aspect-ratio: 100 / 12;
+  overflow: visible;
+  display: block;
+  fill: #ffffff;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1;
+  height: auto;
+}
+
+.curved-text-gradient {
+  fill: #8b5cf6;
+  filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.6));
+}

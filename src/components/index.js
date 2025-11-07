@@ -8,6 +8,8 @@ export { default as ConferenceSection } from "./sections/ConferenceSection";
 export { default as FAQSection } from "./sections/FAQSection";
 export { default as LocationSection } from "./sections/LocationSection";
 export { default as SpeakersSection } from "./sections/SpeakersSection";
+export { default as CurvedLoop } from "./sections/CurvedLoop";
+export { default as CurvedText } from "./sections/CurvedText";
 
 // UI components
 export { default as GradientButton } from "./ui/GradientButton";

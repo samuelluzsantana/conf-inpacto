@@ -8,6 +8,7 @@ import {
   FAQSection,
   SpeakersSection,
   ScrollToTop,
+  CurvedText,
 } from "./components";
 import { isSectionEnabled } from "./config/sections";
 
@@ -68,6 +69,9 @@ function MainContent() {
           <FAQSection />
         </div>
       )}
+
+      {/* Seção: CURVED TEXT */}
+      <CurvedText fontSize={2} />
 
       {/* Footer */}
       {isSectionEnabled("footer") && <Footer />}
