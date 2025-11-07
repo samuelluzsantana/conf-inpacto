@@ -10,6 +10,7 @@ export { default as LocationSection } from "./sections/LocationSection";
 export { default as SpeakersSection } from "./sections/SpeakersSection";
 export { default as CurvedLoop } from "./sections/CurvedLoop";
 export { default as CurvedText } from "./sections/CurvedText";
+export { default as CountDays } from "./sections/CountDays";
 
 // UI components
 export { default as GradientButton } from "./ui/GradientButton";

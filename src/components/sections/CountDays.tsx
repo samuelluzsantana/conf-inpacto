@@ -1,5 +1,109 @@
+import { useState, useEffect, useRef } from "react";
+import confetti from "canvas-confetti";
+import Aurora from "./Aurora";
+
 const CountDays = () => {
-  return <></>;
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+  const confettiTriggered = useRef(false);
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const eventDate = new Date("2026-05-01T00:00:00");
+      const now = new Date();
+      const difference = eventDate.getTime() - now.getTime();
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((difference / 1000 / 60) % 60);
+        const seconds = Math.floor((difference / 1000) % 60);
+
+        setTimeLeft({ days, hours, minutes, seconds });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+        // Trigger confetti when event date is reached
+        if (!confettiTriggered.current) {
+          confettiTriggered.current = true;
+          triggerConfetti();
+        }
+      }
+    };
+
+    calculateTimeLeft();
+    const timer = setInterval(calculateTimeLeft, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const triggerConfetti = () => {
+    const duration = 3000;
+    const end = Date.now() + duration;
+
+    (function frame() {
+      confetti({
+        particleCount: 6,
+        spread: 90,
+        startVelocity: 45,
+        ticks: 200,
+        origin: { x: Math.random(), y: Math.random() - 0.2 },
+        colors: ["#ff006e", "#8338ec", "#3a86ff", "#fb5607", "#ffbe0b"],
+      });
+
+      if (Date.now() < end) requestAnimationFrame(frame);
+    })();
+  };
+
+  const TimeBox = ({ value, label }: { value: number; label: string }) => (
+    <div className="flex flex-col items-center">
+      <div className="min-w-[100px] rounded-2xl border-2 border-[#FA1462]/30 bg-white/90 p-6 shadow-2xl backdrop-blur-sm sm:min-w-[140px] sm:p-8">
+        <div className="mb-2 bg-gradient-to-r from-[#FA1462] to-[#6F00FF] bg-clip-text font-mono text-5xl font-bold text-transparent sm:text-7xl">
+          {String(value).padStart(2, "0")}
+        </div>
+      </div>
+      <div className="mt-3 text-sm font-semibold uppercase tracking-wider text-gray-700 sm:text-lg">
+        {label}
+      </div>
+    </div>
+  );
+
+  return (
+    <section
+      id="count-days"
+      className="relative flex min-h-screen items-center justify-center bg-white p-4"
+    >
+      <div className="relative z-10 text-center">
+        <div className="mb-12">
+          <h1 className="mb-4 bg-gradient-to-r from-[#FA1462] via-[#E23973] to-[#6F00FF] bg-clip-text text-4xl font-bold text-transparent sm:text-6xl">
+            Contagem Regressiva
+          </h1>
+          <p className="text-xl font-light text-gray-700 sm:text-2xl">
+            01 de Maio de 2026
+          </p>
+        </div>
+
+        <div className="mb-8 flex flex-wrap justify-center gap-4 sm:gap-6">
+          <TimeBox value={timeLeft.days} label="Dias" />
+          <TimeBox value={timeLeft.hours} label="Horas" />
+          <TimeBox value={timeLeft.minutes} label="Minutos" />
+          <TimeBox value={timeLeft.seconds} label="Segundos" />
+        </div>
+
+        <div className="mt-12">
+          <div className="inline-block rounded-full border-2 border-purple-500/30 bg-white/80 px-8 py-3 shadow-lg backdrop-blur-sm">
+            <p className="text-sm text-gray-800 sm:text-base">
+              Prepare-se para algo especial
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default CountDays;

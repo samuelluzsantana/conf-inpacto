@@ -53,13 +53,14 @@ const Header = () => {
       path: "/programe-se",
       slug: "programe-se",
     },
+    { name: "FAQ", href: "#faq", path: "/faq", slug: "faq" },
+
     {
       name: "LOCALIZAÇÃO",
       href: "#localizacao",
       path: "/localizacao",
       slug: "localizacao",
     },
-    { name: "FAQ", href: "#faq", path: "/faq", slug: "faq" },
   ];
 
   // Filtra apenas os links das seções habilitadas

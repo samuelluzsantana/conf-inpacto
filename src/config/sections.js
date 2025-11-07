@@ -18,7 +18,7 @@ export const sectionsConfig = {
   bandas: false,
   convidados: false,
   "programe-se": false, // Note o hífen
-  localizacao: false,
+  localizacao: true,
   faq: true,
   footer: true,
 };

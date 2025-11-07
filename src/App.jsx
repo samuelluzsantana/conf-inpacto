@@ -9,6 +9,7 @@ import {
   SpeakersSection,
   ScrollToTop,
   CurvedText,
+  CountDays,
 } from "./components";
 import { isSectionEnabled } from "./config/sections";
 
@@ -56,20 +57,25 @@ function MainContent() {
         </section>
       )}
 
+      {/* Seção: CONTAGEM DE DIAS */}
+      <CountDays />
+
+      {/* Seção: FAQ */}
+      {isSectionEnabled("faq") && (
+        <>
+          {/* Seção: CURVED TEXT */}
+          <CurvedText fontSize={2} />
+
+          <div id="faq" className="scroll-mt-16 sm:scroll-mt-20">
+            <FAQSection />
+          </div>
+        </>
+      )}
+
       {/* Seção: LOCALIZAÇÃO */}
       {isSectionEnabled("localizacao") && (
         <div id="localizacao" className="scroll-mt-16 sm:scroll-mt-20">
           <LocationSection />
-        </div>
-      )}
-
-      {/* Seção: CURVED TEXT */}
-      <CurvedText fontSize={2} />
-
-      {/* Seção: FAQ */}
-      {isSectionEnabled("faq") && (
-        <div id="faq" className="scroll-mt-16 sm:scroll-mt-20">
-          <FAQSection />
         </div>
       )}
 
