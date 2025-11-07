@@ -1,8 +1,40 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 import confetti from "canvas-confetti";
 import Aurora from "./Aurora";
 // @ts-ignore - GlassSurface is a JSX component without TypeScript definitions
 import GlassSurface from "../ui/GlassSurface";
+
+const TimeBox = memo(({ value, label }: { value: number; label: string }) => (
+  <div className="flex flex-col items-center">
+    <GlassSurface
+      width={"auto" as any}
+      height={"auto" as any}
+      borderRadius={32}
+      brightness={15}
+      opacity={0.15}
+      blur={20}
+      displace={8}
+      backgroundOpacity={0.05}
+      saturation={1.4}
+      distortionScale={-150}
+      redOffset={5}
+      greenOffset={12}
+      blueOffset={20}
+      mixBlendMode="screen"
+      className="min-w-[100px] sm:min-w-[140px]"
+      style={{ padding: "1.5em", display: "block" }}
+    >
+      <div className="mb-2 bg-gradient-to-r from-[#FA1462] to-[#6F00FF] bg-clip-text font-mono text-5xl font-bold text-transparent sm:text-7xl">
+        {String(value).padStart(2, "0")}
+      </div>
+    </GlassSurface>
+    <div className="mt-3 text-sm font-semibold uppercase tracking-wider text-gray-700 sm:text-lg">
+      {label}
+    </div>
+  </div>
+));
+
+TimeBox.displayName = "TimeBox";
 
 const CountDays = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -47,7 +79,7 @@ const CountDays = () => {
     const duration = 3000;
     const end = Date.now() + duration;
 
-    (function frame() {
+    const frame = () => {
       confetti({
         particleCount: 6,
         spread: 90,
@@ -58,38 +90,10 @@ const CountDays = () => {
       });
 
       if (Date.now() < end) requestAnimationFrame(frame);
-    })();
-  };
+    };
 
-  const TimeBox = ({ value, label }: { value: number; label: string }) => (
-    <div className="flex flex-col items-center">
-      <GlassSurface
-        width={"auto" as any}
-        height={"auto" as any}
-        borderRadius={32}
-        brightness={15}
-        opacity={0.15}
-        blur={20}
-        displace={8}
-        backgroundOpacity={0.05}
-        saturation={1.4}
-        distortionScale={-150}
-        redOffset={5}
-        greenOffset={12}
-        blueOffset={20}
-        mixBlendMode="screen"
-        className="min-w-[100px] sm:min-w-[140px]"
-        style={{ padding: "1.5em", display: "block" }}
-      >
-        <div className="mb-2 bg-gradient-to-r from-[#FA1462] to-[#6F00FF] bg-clip-text font-mono text-5xl font-bold text-transparent sm:text-7xl">
-          {String(value).padStart(2, "0")}
-        </div>
-      </GlassSurface>
-      <div className="mt-3 text-sm font-semibold uppercase tracking-wider text-gray-700 sm:text-lg">
-        {label}
-      </div>
-    </div>
-  );
+    frame();
+  };
 
   return (
     <section
@@ -125,4 +129,4 @@ const CountDays = () => {
   );
 };
 
-export default CountDays;
+export default memo(CountDays);

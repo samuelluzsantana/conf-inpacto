@@ -29,17 +29,20 @@
     "postcss": "^8.4.38",
     "prettier": "^3.3.1",
     "prettier-plugin-tailwindcss": "^0.6.1",
+    "rollup-plugin-visualizer": "^6.0.5",
     "tailwindcss": "^3.4.4",
-    "vite": "^7.1.12"
+    "vite": "^7.1.12",
+    "vite-plugin-compression": "^0.5.1"
   },
   "name": "react-vite-tailwind-prettier",
   "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:analyze": "ANALYZE=true vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "format": "prettier --write \\\"src/**/*.{js,jsx}\\\""
+    "format": "prettier --write \"src/**/*.{js,jsx}\""
   },
   "type": "module",
   "version": "0.0.0"

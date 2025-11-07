@@ -1,26 +1,47 @@
+import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import {
-  Header,
-  Footer,
-  HomeSection,
-  ConferenceSection,
-  LocationSection,
-  FAQSection,
-  SpeakersSection,
-  ScrollToTop,
-  CurvedText,
-  CountDays,
-} from "./components";
+import { Header, ScrollToTop } from "./components";
 import { isSectionEnabled } from "./config/sections";
+
+// Lazy load dos componentes pesados
+const Footer = lazy(() => import("./components/layout/Footer"));
+const HomeSection = lazy(() => import("./components/sections/HomeSection"));
+const ConferenceSection = lazy(
+  () => import("./components/sections/ConferenceSection"),
+);
+const LocationSection = lazy(
+  () => import("./components/sections/LocationSection"),
+);
+const FAQSection = lazy(() => import("./components/sections/FAQSection"));
+const SpeakersSection = lazy(
+  () => import("./components/sections/SpeakersSection"),
+);
+const CurvedText = lazy(() => import("./components/sections/CurvedText"));
+const CountDays = lazy(() => import("./components/sections/CountDays"));
+
+// Loading component simples e leve
+const SectionLoader = () => (
+  <div className="flex min-h-[50vh] items-center justify-center">
+    <div className="h-12 w-12 animate-spin rounded-full border-4 border-inpacto-purple border-t-transparent"></div>
+  </div>
+);
 
 function MainContent() {
   return (
-    <>
+    <Suspense fallback={<SectionLoader />}>
       {/* Seção: INÍCIO */}
-      {isSectionEnabled("inicio") && <HomeSection />}
+      {isSectionEnabled("inicio") && (
+        <Suspense fallback={<SectionLoader />}>
+          <HomeSection />
+        </Suspense>
+      )}
 
       {/* Seção: A CONFERÊNCIA */}
-      {isSectionEnabled("conferencia") && <ConferenceSection />}
+      {isSectionEnabled("conferencia") && (
+        <Suspense fallback={<SectionLoader />}>
+          <ConferenceSection />
+        </Suspense>
+      )}
 
       {/* Seção: BANDAS */}
       {isSectionEnabled("bandas") && (
@@ -40,7 +61,11 @@ function MainContent() {
       )}
 
       {/* Seção: CONVIDADOS */}
-      {isSectionEnabled("convidados") && <SpeakersSection />}
+      {isSectionEnabled("convidados") && (
+        <Suspense fallback={<SectionLoader />}>
+          <SpeakersSection />
+        </Suspense>
+      )}
 
       {/* Seção: PROGRAME-SE */}
       {isSectionEnabled("programe-se") && (
@@ -58,30 +83,38 @@ function MainContent() {
       )}
 
       {/* Seção: CONTAGEM DE DIAS */}
-      <CountDays />
+      <Suspense fallback={<SectionLoader />}>
+        <CountDays />
+      </Suspense>
 
       {/* Seção: FAQ */}
       {isSectionEnabled("faq") && (
-        <>
+        <Suspense fallback={<SectionLoader />}>
           {/* Seção: CURVED TEXT */}
           <CurvedText fontSize={2} />
 
           <div id="faq" className="scroll-mt-16 sm:scroll-mt-20">
             <FAQSection />
           </div>
-        </>
+        </Suspense>
       )}
 
       {/* Seção: LOCALIZAÇÃO */}
       {isSectionEnabled("localizacao") && (
-        <div id="localizacao" className="scroll-mt-16 sm:scroll-mt-20">
-          <LocationSection />
-        </div>
+        <Suspense fallback={<SectionLoader />}>
+          <div id="localizacao" className="scroll-mt-16 sm:scroll-mt-20">
+            <LocationSection />
+          </div>
+        </Suspense>
       )}
 
       {/* Footer */}
-      {isSectionEnabled("footer") && <Footer />}
-    </>
+      {isSectionEnabled("footer") && (
+        <Suspense fallback={<SectionLoader />}>
+          <Footer />
+        </Suspense>
+      )}
+    </Suspense>
   );
 }
 

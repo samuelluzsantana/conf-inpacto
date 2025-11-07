@@ -1,16 +1,12 @@
 // Layout components
 export { default as Header } from "./layout/Header";
-export { default as Footer } from "./layout/Footer";
+// Footer removido - será lazy loaded
 
 // Section components
-export { default as HomeSection } from "./sections/HomeSection";
-export { default as ConferenceSection } from "./sections/ConferenceSection";
-export { default as FAQSection } from "./sections/FAQSection";
-export { default as LocationSection } from "./sections/LocationSection";
-export { default as SpeakersSection } from "./sections/SpeakersSection";
+// Sections pesadas removidas - serão lazy loaded:
+// HomeSection, ConferenceSection, FAQSection, LocationSection,
+// SpeakersSection, CurvedText, CountDays
 export { default as CurvedLoop } from "./sections/CurvedLoop";
-export { default as CurvedText } from "./sections/CurvedText";
-export { default as CountDays } from "./sections/CountDays";
 
 // UI components
 export { default as GradientButton } from "./ui/GradientButton";

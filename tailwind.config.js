@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
+  content: ["./index.html", "./src/**/*.{html,js,jsx,ts,tsx}"],
   theme: {
     extend: {
       fontFamily: {
@@ -38,4 +38,9 @@ export default {
     },
   },
   plugins: [],
+  // Otimizações para produção
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
+  // Purge automático já está habilitado por padrão no Tailwind 3+
 };

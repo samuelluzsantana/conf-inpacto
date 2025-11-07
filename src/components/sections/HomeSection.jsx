@@ -1,3 +1,4 @@
+import { memo } from "react";
 import bannerMobile from "../../assets/backgrounds/saturados_bannermobile.png";
 import bannerDesktop from "../../assets/backgrounds/saturados_bannerdesk.png";
 
@@ -14,6 +15,11 @@ const HomeSection = () => {
           src={bannerMobile}
           alt="Banner Mobile"
           className="h-auto w-full object-contain"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          width="1080"
+          height="1920"
         />
       </div>
 
@@ -23,10 +29,15 @@ const HomeSection = () => {
           src={bannerDesktop}
           alt="Banner Desktop"
           className="h-auto w-full object-contain"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          width="1920"
+          height="1080"
         />
       </div>
     </section>
   );
 };
 
-export default HomeSection;
+export default memo(HomeSection);
