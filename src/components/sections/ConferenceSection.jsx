@@ -36,7 +36,7 @@ function ConferenceSection() {
           </p>
 
           {/* Texto Principal */}
-          <div className="mx-auto mb-10 max-w-3xl space-y-6 text-base leading-relaxed text-gray-200 sm:text-lg">
+          <div className="mx-auto mb-10 max-w-3xl space-y-6 text-justify text-base leading-relaxed text-gray-200 sm:text-lg">
             <p className="font-light">
               Nunca sentimos tanto e nunca estivemos tão vazios. Vivemos
               viciados em estímulos, sempre conectados e sempre cansados. A
@@ -68,7 +68,7 @@ function ConferenceSection() {
             </p>
 
             <p className="text-2xl font-black uppercase tracking-wide text-white sm:text-3xl">
-              No limite da dopamina,
+              No limite da dopamina.
               <span className="from-pink via-magenta to-purple block bg-gradient-to-r bg-clip-text text-transparent">
                 começa a verdadeira saciedade
               </span>
@@ -92,7 +92,7 @@ function ConferenceSection() {
               className="glass-conference-content"
               style={{ padding: "1.5em" }}
             >
-              <blockquote className="border-pink border-l-4 pl-6 text-left italic text-gray-300">
+              <blockquote className="border-pink border-l-4 pl-6 text-justify italic text-gray-300">
                 <p className="text-base sm:text-lg">
                   &ldquo;Eu sou o pão da vida; aquele que vem a mim não terá
                   fome, e quem crê em mim nunca terá sede.&rdquo;
