@@ -63,15 +63,15 @@ function MainContent() {
         </div>
       )}
 
+      {/* Seção: CURVED TEXT */}
+      <CurvedText fontSize={2} />
+
       {/* Seção: FAQ */}
       {isSectionEnabled("faq") && (
         <div id="faq" className="scroll-mt-16 sm:scroll-mt-20">
           <FAQSection />
         </div>
       )}
-
-      {/* Seção: CURVED TEXT */}
-      <CurvedText fontSize={2} />
 
       {/* Footer */}
       {isSectionEnabled("footer") && <Footer />}
