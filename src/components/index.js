@@ -12,6 +12,7 @@ export { default as SpeakersSection } from "./sections/SpeakersSection";
 // UI components
 export { default as GradientButton } from "./ui/GradientButton";
 export { default as Logo } from "./ui/Logo";
+export { default as ScrollToTop } from "./ui/ScrollToTop";
 
 // Carousel components
 export { default as EmblaCarousel } from "./carousel/EmblaCarousel";

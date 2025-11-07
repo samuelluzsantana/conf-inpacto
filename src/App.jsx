@@ -7,6 +7,7 @@ import {
   LocationSection,
   FAQSection,
   SpeakersSection,
+  ScrollToTop,
 } from "./components";
 import { isSectionEnabled } from "./config/sections";
 
@@ -90,6 +91,7 @@ function App() {
           <Route path="/faq" element={<MainContent />} />
         </Routes>
       </div>
+      <ScrollToTop />
     </Router>
   );
 }

@@ -47,7 +47,7 @@ function FAQItem({ question, answer, isOpen, onToggle }) {
     <div className="border-b border-gray-200 last:border-b-0">
       <button
         onClick={onToggle}
-        className="hover:text-inpacto-pink flex w-full items-center justify-between gap-4 py-5 text-left transition-colors sm:py-6"
+        className="flex w-full items-center justify-between gap-4 py-5 text-left transition-colors hover:text-inpacto-pink sm:py-6"
         aria-expanded={isOpen}
       >
         <span className="text-base font-semibold text-gray-900 sm:text-lg">
@@ -55,7 +55,7 @@ function FAQItem({ question, answer, isOpen, onToggle }) {
         </span>
         <ChevronDown
           className={`h-5 w-5 flex-shrink-0 text-gray-500 transition-transform duration-300 sm:h-6 sm:w-6 ${
-            isOpen ? "text-inpacto-pink rotate-180" : ""
+            isOpen ? "rotate-180 text-inpacto-pink" : ""
           }`}
         />
       </button>
@@ -88,11 +88,11 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="to-inpacto-sky/10 min-h-screen bg-gradient-to-br from-gray-50 px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <section className="min-h-screen bg-gradient-to-br from-gray-50 to-inpacto-sky/10 px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="mb-8 text-center sm:mb-12">
-          <h1 className="text-inpacto-purple mb-3 text-4xl font-bold leading-tight sm:mb-4 sm:text-5xl md:text-6xl">
+          <h1 className="mb-3 block bg-gradient-to-r from-[#FA1462] via-[#E23973] to-[#6F00FF] bg-clip-text text-4xl font-bold leading-tight text-transparent sm:mb-4 sm:text-5xl md:text-6xl">
             FAQ
           </h1>
           <p className="text-base text-gray-600 sm:text-lg">
@@ -122,7 +122,7 @@ export default function FAQSection() {
           </p>
           <a
             href="mailto:conferenciainpacto@gmail.com"
-            className="text-inpacto-pink hover:text-inpacto-magenta mt-2 inline-block text-base font-semibold transition-colors hover:underline sm:text-lg"
+            className="mt-2 inline-block text-base font-semibold text-inpacto-pink transition-colors hover:text-inpacto-magenta hover:underline sm:text-lg"
           >
             Entre em contato conosco →
           </a>

@@ -90,7 +90,7 @@ function ConferenceSection() {
               blueOffset={20}
               mixBlendMode="screen"
               className="glass-conference-content"
-              style={{ padding: "1em, 2em" }}
+              style={{ padding: "1.5em" }}
             >
               <blockquote className="border-pink border-l-4 pl-6 text-left italic text-gray-300">
                 <p className="text-base sm:text-lg">
