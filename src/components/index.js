@@ -15,3 +15,7 @@ export { default as Logo } from "./ui/Logo";
 
 // Carousel components
 export { default as EmblaCarousel } from "./carousel/EmblaCarousel";
+
+// Effects components
+export { default as LiquidChrome } from "./LiquidChrome";
+export { default as LiquidEther } from "./LiquidEther";
