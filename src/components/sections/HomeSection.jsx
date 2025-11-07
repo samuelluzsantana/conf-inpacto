@@ -10,7 +10,7 @@ const HomeSection = () => {
       <HomeBackground />
 
       {/* 🔹 Bloco superior esquerdo */}
-      <div className="absolute left-4 top-16 z-10 flex w-auto max-w-[92%] flex-col text-[#2d2d2d] sm:left-8 sm:top-28 md:left-12 md:top-36 lg:left-16 lg:top-56">
+      <div className="absolute left-4 top-16 z-20 flex w-auto max-w-[92%] flex-col text-[#2d2d2d] sm:left-8 sm:top-28 md:left-12 md:top-36 lg:left-16 lg:top-56">
         {/* Título */}
         <div className="flex w-full flex-wrap justify-between text-lg font-extrabold uppercase sm:text-2xl md:text-3xl lg:text-4xl">
           <p>Conferência</p>
@@ -30,7 +30,7 @@ const HomeSection = () => {
       </div>
 
       {/* 🔹 Bloco inferior direito */}
-      <div className="absolute bottom-16 right-4 z-10 text-right text-[#2d2d2d] sm:bottom-20 sm:right-8 md:bottom-24 md:right-12 lg:bottom-32 lg:right-16">
+      <div className="absolute bottom-16 right-4 z-20 text-right text-[#2d2d2d] sm:bottom-20 sm:right-8 md:bottom-24 md:right-12 lg:bottom-32 lg:right-16">
         <div className="valor-ingresso flex flex-wrap items-baseline justify-end bg-gradient-to-r from-[#FA1462] to-[#9952ec] bg-clip-text text-lg font-extrabold uppercase text-transparent sm:text-2xl md:text-3xl lg:text-4xl">
           <p className="mr-1">Ingresso</p>
           <p>R$:198</p>
