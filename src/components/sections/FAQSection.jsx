@@ -122,9 +122,12 @@ export default function FAQSection() {
           </p>
           <a
             href="mailto:conferenciainpacto@gmail.com"
-            className="mt-2 inline-block text-base font-semibold text-inpacto-pink transition-colors hover:text-inpacto-magenta hover:underline sm:text-lg"
+            className="group relative mt-2 inline-block text-base font-semibold text-inpacto-pink transition-colors hover:text-inpacto-magenta sm:text-lg"
           >
-            Entre em contato conosco →
+            <span className="relative">
+              Entre em contato conosco →
+              <span className="absolute bottom-0 left-0 h-[0.10px] w-0 bg-inpacto-magenta transition-all duration-300 group-hover:w-full" />
+            </span>
           </a>
         </div>
       </div>

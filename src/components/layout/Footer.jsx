@@ -119,12 +119,22 @@ export default function Footer() {
           {/* Direitos */}
           <div className="pb-2">
             <p className="text-center text-[10px] leading-relaxed text-white/80 sm:text-xs md:text-sm">
-              ©2025 Todos os direitos reservados à Igreja Presbiteriana de
+              ©2026 Todos os direitos reservados à Igreja Presbiteriana de
               Pinheiros
               <br className="sm:hidden" />
               <span className="hidden sm:inline"> | </span>
               Desenvolvido por{" "}
-              <span className="font-semibold text-white">Samuel Luz</span>
+              <a
+                href="https://github.com/samuelluzsantana/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative font-semibold text-white transition-colors"
+              >
+                <span className="relative">
+                  Samuel Luz
+                  <span className="absolute bottom-0 left-0 h-[1px] w-0 bg-white transition-all duration-300 group-hover:w-full" />
+                </span>
+              </a>
             </p>
           </div>
         </div>
