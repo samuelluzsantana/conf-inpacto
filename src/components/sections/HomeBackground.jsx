@@ -12,27 +12,33 @@ const HomeBackground = () => {
   const maoEsquerdaRef = useRef(null);
 
   useEffect(() => {
-    // Efeito de paralax para a mão direita (move para baixo no scroll)
+    // Efeito de parallax para a mão direita (move para baixo e ligeiramente para a direita)
     gsap.to(maoDireitaRef.current, {
-      y: 200,
-      ease: "none",
+      y: 300,
+      x: 50,
+      rotation: 5,
+      scale: 1.1,
+      ease: "power1.out",
       scrollTrigger: {
         trigger: maoDireitaRef.current,
         start: "top top",
         end: "bottom top",
-        scrub: 1,
+        scrub: 2,
       },
     });
 
-    // Efeito de paralax para a mão esquerda (move para cima no scroll - diminuído)
+    // Efeito de parallax para a mão esquerda (move para cima e ligeiramente para a esquerda)
     gsap.to(maoEsquerdaRef.current, {
-      y: -100,
-      ease: "none",
+      y: -200,
+      x: -50,
+      rotation: -5,
+      scale: 1.1,
+      ease: "power1.out",
       scrollTrigger: {
         trigger: maoEsquerdaRef.current,
         start: "top bottom",
         end: "bottom top",
-        scrub: 1,
+        scrub: 2,
       },
     });
   }, []);

@@ -4,6 +4,7 @@ export { default as Footer } from "./layout/Footer";
 
 // Section components
 export { default as HomeSection } from "./sections/HomeSection";
+export { default as ConferenceSection } from "./sections/ConferenceSection";
 export { default as FAQSection } from "./sections/FAQSection";
 export { default as LocationSection } from "./sections/LocationSection";
 export { default as SpeakersSection } from "./sections/SpeakersSection";
