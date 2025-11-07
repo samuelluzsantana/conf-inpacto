@@ -1,5 +1,5 @@
+import { memo } from "react";
 import LiquidChrome from "../LiquidChrome";
-import GlassSurface from "../ui/GlassSurface";
 import { InteractiveHoverButton } from "../ui/InteractiveHoverButton";
 
 function ConferenceSection() {
@@ -23,24 +23,7 @@ function ConferenceSection() {
 
       {/* Conteúdo */}
       <div className="relative z-10 w-full max-w-5xl px-4 py-[8em] text-center sm:px-6 lg:px-8">
-        <GlassSurface
-          width="100%"
-          height="auto"
-          borderRadius={32}
-          brightness={15}
-          opacity={0.15}
-          blur={20}
-          displace={8}
-          backgroundOpacity={0.05}
-          saturation={1.4}
-          distortionScale={-150}
-          redOffset={5}
-          greenOffset={12}
-          blueOffset={20}
-          mixBlendMode="screen"
-          className="w-full"
-          style={{ padding: "2em", display: "block" }}
-        >
+        <div className="glass-conference w-full rounded-[32px] p-8 md:p-12 lg:p-16">
           <div className="space-y-8">
             {/* Título Principal */}
             <h1 className="text-5xl font-black uppercase tracking-tight text-white drop-shadow-[0_0_30px_rgba(250,20,98,0.5)] sm:text-6xl lg:text-7xl">
@@ -102,10 +85,10 @@ function ConferenceSection() {
               </div>
             </div>
           </div>
-        </GlassSurface>
+        </div>
       </div>
     </section>
   );
 }
 
-export default ConferenceSection;
+export default memo(ConferenceSection);

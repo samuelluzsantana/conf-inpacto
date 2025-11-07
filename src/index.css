@@ -1,3 +1,6 @@
+/* Importar efeito Glass otimizado */
+@import "./styles/glass-effect.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
