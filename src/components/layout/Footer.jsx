@@ -1,62 +1,61 @@
-import metroBackground from "../../assets/backgrounds/metro-background.avif";
 import LogosJuntas from "../../assets/logos/3 logo branco.png";
+import casaColorida from "../../assets/elementos/26_casa.png";
 
 export default function Footer() {
   return (
-    <footer className="relative flex min-h-screen flex-col text-white md:h-[170vh]">
-      {/* Background */}
-      <div
-        className="absolute inset-0 bg-cover bg-center md:bg-fixed"
-        style={{ backgroundImage: `url(${metroBackground})` }}
-      />
-
+    <footer className="relative overflow-hidden bg-white py-20 text-white sm:py-32 lg:py-40">
       {/* Gradiente */}
       <div
         className="absolute inset-0"
         style={{
           background: `linear-gradient(
-            180deg,
-            transparent 0%,
-            rgba(250, 20, 98, 0.4) 30%,
-            rgba(226, 57, 115, 0.75) 45%,
-            #35126A 80%,
-            #35126A 100%
+            to bottom,
+            #f85660 25%,
+            #FA1462 50%,
+            #6f00ff 75%,
+            transparent 100%
           )`,
         }}
       />
 
-      {/* Spacer para empurrar conteúdo para baixo */}
-      <div className="flex-1" />
+      {/* Casa colorida posicionada embaixo */}
+      <div className="absolute bottom-[-1em] left-0 w-full">
+        <img
+          src={casaColorida}
+          alt="Casa colorida"
+          className="h-auto w-full object-cover blur-md"
+        />
+      </div>
 
-      <div className="relative z-10 px-4 pb-6 sm:px-8 sm:pb-8">
-        {/* Logo Inpacto */}
-        <div className="mb-4 flex items-center justify-center">
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        {/* Logo Inpacto - Reduzida */}
+        <div className="mb-3 flex items-center justify-center sm:mb-4">
           <img
             src={LogosJuntas}
             alt="Logo Inpacto"
-            className="h-auto w-full max-w-[280px] opacity-90 sm:max-w-[400px] md:max-w-[600px] lg:max-w-[800px]"
+            className="h-auto w-full max-w-[300px] opacity-90 sm:max-w-[280px] md:max-w-[450px]"
           />
         </div>
 
         {/* Área inferior */}
         <div>
-          {/* Redes Sociais - Centralizadas em mobile, direita em desktop */}
-          <div className="mb-4 flex justify-center sm:justify-end">
-            <div className="flex gap-3 sm:gap-4">
+          {/* Redes Sociais - Centralizadas */}
+          <div className="mb-2 flex justify-center sm:mb-3">
+            <div className="flex gap-2 sm:gap-3">
               {/* Instagram */}
               <a
                 href="https://www.instagram.com/conferencia.inpacto/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full bg-white/10 p-2.5 backdrop-blur-sm transition-all hover:scale-110 hover:bg-white/20 active:scale-95 sm:p-3"
+                className="rounded-full bg-white/10 p-2 backdrop-blur-sm transition-all hover:scale-110 hover:bg-white/20 active:scale-95 sm:p-2.5"
                 aria-label="Instagram"
               >
                 <svg
-                  className="h-5 w-5 fill-white sm:h-6 sm:w-6"
-                  viewBox="0 0 24 24"
+                  className="h-4 w-4 fill-white sm:h-5 sm:w-5"
+                  viewBox="0 0 256 256"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                  <path d="M160,128a32,32,0,1,1-32-32A32.03667,32.03667,0,0,1,160,128Zm68-44v88a56.06353,56.06353,0,0,1-56,56H84a56.06353,56.06353,0,0,1-56-56V84A56.06353,56.06353,0,0,1,84,28h88A56.06353,56.06353,0,0,1,228,84Zm-52,44a48,48,0,1,0-48,48A48.05436,48.05436,0,0,0,176,128Zm16-52a12,12,0,1,0-12,12A12,12,0,0,0,192,76Z" />
                 </svg>
               </a>
 
@@ -65,11 +64,11 @@ export default function Footer() {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full bg-white/10 p-2.5 backdrop-blur-sm transition-all hover:scale-110 hover:bg-white/20 active:scale-95 sm:p-3"
+                className="rounded-full bg-white/10 p-2 backdrop-blur-sm transition-all hover:scale-110 hover:bg-white/20 active:scale-95 sm:p-2.5"
                 aria-label="Facebook"
               >
                 <svg
-                  className="h-5 w-5 fill-white sm:h-6 sm:w-6"
+                  className="h-4 w-4 fill-white sm:h-5 sm:w-5"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -82,11 +81,11 @@ export default function Footer() {
                 href="https://youtube.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full bg-white/10 p-2.5 backdrop-blur-sm transition-all hover:scale-110 hover:bg-white/20 active:scale-95 sm:p-3"
+                className="rounded-full bg-white/10 p-2 backdrop-blur-sm transition-all hover:scale-110 hover:bg-white/20 active:scale-95 sm:p-2.5"
                 aria-label="YouTube"
               >
                 <svg
-                  className="h-5 w-5 fill-white sm:h-6 sm:w-6"
+                  className="h-4 w-4 fill-white sm:h-5 sm:w-5"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -99,11 +98,11 @@ export default function Footer() {
                 href="https://wa.me/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full bg-white/10 p-2.5 backdrop-blur-sm transition-all hover:scale-110 hover:bg-white/20 active:scale-95 sm:p-3"
+                className="rounded-full bg-white/10 p-2 backdrop-blur-sm transition-all hover:scale-110 hover:bg-white/20 active:scale-95 sm:p-2.5"
                 aria-label="WhatsApp"
               >
                 <svg
-                  className="h-5 w-5 fill-white sm:h-6 sm:w-6"
+                  className="h-4 w-4 fill-white sm:h-5 sm:w-5"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
