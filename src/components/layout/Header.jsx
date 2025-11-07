@@ -184,7 +184,7 @@ const Header = () => {
     >
       <nav
         aria-label="Global"
-        className="mx-auto flex max-w-7xl items-center justify-between px-4 py-6 sm:px-6 lg:px-8 lg:py-12"
+        className="mx-auto flex max-w-7xl items-center justify-between px-4 py-6 sm:px-6 lg:px-8 lg:py-[2.9em]"
       >
         {/* Logo */}
         <div className="flex lg:flex-1">

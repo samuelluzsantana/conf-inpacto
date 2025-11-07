@@ -1,10 +1,11 @@
 import HomeBackground from "./HomeBackground";
+import GradientText from "../ui/GradientText";
 
 const HomeSection = () => {
   return (
     <section
       id="inicio"
-      className="relative flex min-h-screen scroll-mt-16 bg-cover bg-center bg-no-repeat sm:scroll-mt-20"
+      className="relative flex min-h-screen scroll-mt-16 overflow-hidden bg-cover bg-center bg-no-repeat sm:scroll-mt-20"
     >
       {/* Background com as mãos */}
       <HomeBackground />
@@ -18,10 +19,14 @@ const HomeSection = () => {
         </div>
 
         {/* Data */}
-        <div className="mt-1 flex w-full flex-wrap justify-between bg-gradient-to-r from-[#FA1462] via-[#E23973] to-[#9952ec] bg-clip-text text-base font-extrabold uppercase text-transparent sm:mt-2 sm:text-xl md:text-2xl lg:text-3xl">
+        <GradientText
+          colors={["#FA1462", "#E23973", "#9952ec"]}
+          animationSpeed={3}
+          className="mt-1 flex w-full flex-wrap justify-between text-base font-extrabold uppercase sm:mt-2 sm:text-xl md:text-2xl lg:text-3xl"
+        >
           <p>01 e 02 de maio</p>
           <p className="ml-2 text-right">2026</p>
-        </div>
+        </GradientText>
 
         {/* Local */}
         <div className="mt-3 w-full text-[0.75rem] font-medium uppercase tracking-widest text-[#444] sm:text-sm md:text-[1.5rem] lg:text-[1.5rem]">
@@ -31,10 +36,14 @@ const HomeSection = () => {
 
       {/* 🔹 Bloco inferior direito */}
       <div className="absolute bottom-16 right-4 z-20 text-right text-[#2d2d2d] sm:bottom-20 sm:right-8 md:bottom-24 md:right-12 lg:bottom-32 lg:right-16">
-        <div className="valor-ingresso flex flex-wrap items-baseline justify-end bg-gradient-to-r from-[#FA1462] to-[#9952ec] bg-clip-text text-lg font-extrabold uppercase text-transparent sm:text-2xl md:text-3xl lg:text-4xl">
+        <GradientText
+          colors={["#FA1462", "#9952ec"]}
+          animationSpeed={3}
+          className="valor-ingresso flex flex-wrap items-baseline justify-end text-lg font-extrabold uppercase sm:text-2xl md:text-3xl lg:text-4xl"
+        >
           <p className="mr-1">Ingresso</p>
           <p>R$:198</p>
-        </div>
+        </GradientText>
 
         <div className="parcela mt-1 text-[#444] lg:text-[2rem]">
           (em até 6x s/juros)
