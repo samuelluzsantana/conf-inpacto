@@ -61,7 +61,7 @@ function ScrollToTop() {
                 viewBox="0 0 24 24"
                 strokeWidth={2.5}
                 stroke="currentColor"
-                className="h-8 w-8 text-white drop-shadow-[0_0_10px_rgba(250,20,98,0.5)]"
+                className="h-6 w-6 text-white drop-shadow-[0_0_10px_rgba(250,20,98,0.5)]"
               >
                 <path
                   strokeLinecap="round"
