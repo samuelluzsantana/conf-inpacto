@@ -1,14 +1,33 @@
 import { useState, useEffect, useRef, memo } from "react";
 import confetti from "canvas-confetti";
 import Aurora from "./Aurora";
+// @ts-ignore - GlassSurface is a JSX component without TypeScript definitions
+import GlassSurface from "../ui/GlassSurface";
 
 const TimeBox = memo(({ value, label }: { value: number; label: string }) => (
   <div className="flex flex-col items-center">
-    <div className="glass-timebox min-w-[100px] rounded-[32px] p-6 sm:min-w-[140px]">
+    <GlassSurface
+      width={"auto" as any}
+      height={"auto" as any}
+      borderRadius={32}
+      brightness={15}
+      opacity={0.15}
+      blur={20}
+      displace={8}
+      backgroundOpacity={0.05}
+      saturation={1.4}
+      distortionScale={-150}
+      redOffset={5}
+      greenOffset={12}
+      blueOffset={20}
+      mixBlendMode="screen"
+      className="min-w-[100px] sm:min-w-[140px]"
+      style={{ padding: "1.5em", display: "block" }}
+    >
       <div className="mb-2 bg-gradient-to-r from-[#FA1462] to-[#6F00FF] bg-clip-text font-mono text-5xl font-bold text-transparent sm:text-7xl">
         {String(value).padStart(2, "0")}
       </div>
-    </div>
+    </GlassSurface>
     <div className="mt-3 text-sm font-semibold uppercase tracking-wider text-gray-700 sm:text-lg">
       {label}
     </div>
@@ -25,6 +44,22 @@ const CountDays = () => {
     seconds: 0,
   });
   const confettiTriggered = useRef(false);
+
+  const handleAddToGoogleCalendar = () => {
+    const title = encodeURIComponent("Conferência InPacto 2026 - Saturados");
+    const details = encodeURIComponent(
+      "NO LIMITE DA DOPAMINA\n\n" +
+        "Nunca sentimos tanto e nunca estivemos tão vazios. Vivemos viciados em estímulos, sempre conectados e sempre cansados.\n\n" +
+        "A Conferência InPacto 2026 é um convite para desacelerar, silenciar o excesso e redescobrir a vida que só existe em Cristo.\n\n" +
+        '"Eu sou o pão da vida; aquele que vem a mim não terá fome, e quem crê em mim nunca terá sede." - João 6:35',
+    );
+    const location = encodeURIComponent("A definir - Informações em breve");
+    const start = "20260501T090000Z"; // 01 de Maio de 2026, 09:00 UTC
+    const end = "20260501T180000Z"; // 01 de Maio de 2026, 18:00 UTC
+
+    const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&location=${location}&dates=${start}/${end}`;
+    window.open(url, "_blank");
+  };
 
   useEffect(() => {
     const calculateTimeLeft = () => {
@@ -99,11 +134,14 @@ const CountDays = () => {
         </div>
 
         <div className="mt-12">
-          <div className="inline-block rounded-full border-2 border-purple-500/30 bg-white/80 px-8 py-3 shadow-lg backdrop-blur-sm">
+          <button
+            onClick={handleAddToGoogleCalendar}
+            className="inline-block rounded-full border-2 border-purple-500/30 bg-white/80 px-8 py-3 shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-purple-500/50 hover:shadow-xl"
+          >
             <p className="text-sm text-gray-800 sm:text-base">
-              ✨ Prepare-se para algo especial
+              📅 Adicionar à Agenda
             </p>
-          </div>
+          </button>
         </div>
       </div>
     </section>
