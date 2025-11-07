@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import confetti from "canvas-confetti";
 import Aurora from "./Aurora";
+// @ts-ignore - GlassSurface is a JSX component without TypeScript definitions
+import GlassSurface from "../ui/GlassSurface";
 
 const CountDays = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -61,11 +63,28 @@ const CountDays = () => {
 
   const TimeBox = ({ value, label }: { value: number; label: string }) => (
     <div className="flex flex-col items-center">
-      <div className="min-w-[100px] rounded-2xl border-2 border-[#FA1462]/30 bg-white/90 p-6 shadow-2xl backdrop-blur-sm sm:min-w-[140px] sm:p-8">
+      <GlassSurface
+        width={"auto" as any}
+        height={"auto" as any}
+        borderRadius={32}
+        brightness={15}
+        opacity={0.15}
+        blur={20}
+        displace={8}
+        backgroundOpacity={0.05}
+        saturation={1.4}
+        distortionScale={-150}
+        redOffset={5}
+        greenOffset={12}
+        blueOffset={20}
+        mixBlendMode="screen"
+        className="min-w-[100px] sm:min-w-[140px]"
+        style={{ padding: "1.5em", display: "block" }}
+      >
         <div className="mb-2 bg-gradient-to-r from-[#FA1462] to-[#6F00FF] bg-clip-text font-mono text-5xl font-bold text-transparent sm:text-7xl">
           {String(value).padStart(2, "0")}
         </div>
-      </div>
+      </GlassSurface>
       <div className="mt-3 text-sm font-semibold uppercase tracking-wider text-gray-700 sm:text-lg">
         {label}
       </div>
@@ -97,7 +116,7 @@ const CountDays = () => {
         <div className="mt-12">
           <div className="inline-block rounded-full border-2 border-purple-500/30 bg-white/80 px-8 py-3 shadow-lg backdrop-blur-sm">
             <p className="text-sm text-gray-800 sm:text-base">
-              Prepare-se para algo especial
+              ✨ Prepare-se para algo especial
             </p>
           </div>
         </div>
