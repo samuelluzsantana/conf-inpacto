@@ -9,15 +9,14 @@ function ConferenceSection() {
       className="relative flex min-h-screen scroll-mt-16 items-center justify-center overflow-hidden bg-black sm:scroll-mt-20"
     >
       {/* 💧 Fundo LiquidChrome com efeito chromático */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 h-full w-full overflow-hidden">
         <LiquidChrome
-          colors={[" #FA1462", "#E23973", "#6F00FF"]}
+          colors={["#FA1462", "#E23973", "#6F00FF"]}
           speed={0.35}
           amplitude={0.6}
           frequencyX={3}
           frequencyY={2}
           interactive={true}
-          style={{ width: "100%", height: "100%" }}
         />
       </div>
 

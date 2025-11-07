@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, memo } from "react";
 import { Renderer, Program, Mesh, Triangle } from "ogl";
 
 import "./LiquidChrome.css";
@@ -25,6 +25,8 @@ const LiquidChrome = ({
   ...props
 }) => {
   const containerRef = useRef(null);
+  const rafIdRef = useRef(null);
+  const isVisibleRef = useRef(true);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -45,7 +47,7 @@ const LiquidChrome = ({
     `;
 
     const fragmentShader = `
-      precision highp float;
+      precision mediump float;
       uniform float uTime;
       uniform vec3 uResolution;
       uniform vec3 uColor1;
@@ -58,50 +60,35 @@ const LiquidChrome = ({
       varying vec2 vUv;
 
       vec3 mix3(vec3 a, vec3 b, vec3 c, float t) {
-        if (t < 0.5) {
-          return mix(a, b, t * 2.0);
-        } else {
-          return mix(b, c, (t - 0.5) * 2.0);
-        }
+        return t < 0.5 ? mix(a, b, t * 2.0) : mix(b, c, (t - 0.5) * 2.0);
       }
 
-      vec4 renderImage(vec2 uvCoord) {
-          vec2 fragCoord = uvCoord * uResolution.xy;
+      void main() {
+          vec2 fragCoord = vUv * uResolution.xy;
           vec2 uv = (2.0 * fragCoord - uResolution.xy) / min(uResolution.x, uResolution.y);
 
-          for (float i = 1.0; i < 10.0; i++){
+          // Reduzido de 10 para 5 iterações = 50% menos cálculos
+          for (float i = 1.0; i < 5.0; i++){
               uv.x += uAmplitude / i * cos(i * uFrequencyX * uv.y + uTime + uMouse.x * 3.14159);
               uv.y += uAmplitude / i * cos(i * uFrequencyY * uv.x + uTime + uMouse.y * 3.14159);
           }
 
-          vec2 diff = (uvCoord - uMouse);
+          // Efeito ripple simplificado
+          vec2 diff = (vUv - uMouse);
           float dist = length(diff);
-          float falloff = exp(-dist * 20.0);
-          float ripple = sin(10.0 * dist - uTime * 2.0) * 0.03;
-          uv += (diff / (dist + 0.0001)) * ripple * falloff;
+          float falloff = exp(-dist * 15.0);
+          float ripple = sin(8.0 * dist - uTime * 2.0) * 0.02;
+          uv += (diff / (dist + 0.001)) * ripple * falloff;
 
           // Criar movimento cromático nas cores
-          float colorT = mod(sin(uTime * 0.5 + uv.x + uv.y) * 0.5 + 0.5, 1.0);
+          float colorT = fract(sin(uTime * 0.5 + uv.x + uv.y) * 0.5 + 0.5);
           vec3 color = mix3(uColor1, uColor2, uColor3, colorT);
           
           // Adicionar saturação baseada no movimento
           float intensity = abs(sin(uTime - uv.y - uv.x));
-          color = color * (0.5 + intensity);
+          color *= (0.5 + intensity);
           
-          return vec4(color, 1.0);
-      }
-
-      void main() {
-          vec4 col = vec4(0.0);
-          int samples = 0;
-          for (int i = -1; i <= 1; i++){
-              for (int j = -1; j <= 1; j++){
-                  vec2 offset = vec2(float(i), float(j)) * (1.0 / min(uResolution.x, uResolution.y));
-                  col += renderImage(vUv + offset);
-                  samples++;
-              }
-          }
-          gl_FragColor = col / float(samples);
+          gl_FragColor = vec4(color, 1.0);
       }
     `;
 
@@ -134,8 +121,9 @@ const LiquidChrome = ({
     });
     const mesh = new Mesh(gl, { geometry, program });
 
+    // Reduzir resolução em 50% = 75% menos pixels para processar!
     function resize() {
-      const scale = 1;
+      const scale = 0.5; // Era 1, agora 0.5 = muito mais leve!
       renderer.setSize(
         container.offsetWidth * scale,
         container.offsetHeight * scale,
@@ -145,10 +133,25 @@ const LiquidChrome = ({
       resUniform[1] = gl.canvas.height;
       resUniform[2] = gl.canvas.width / gl.canvas.height;
     }
-    window.addEventListener("resize", resize);
+
+    // Debounce resize para evitar múltiplas chamadas
+    let resizeTimeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(resize, 150);
+    };
+    window.addEventListener("resize", handleResize);
     resize();
 
+    // Throttle mouse events para reduzir cálculos
+    let lastMouseUpdate = 0;
+    const mouseThrottle = 16; // ~60fps max
+
     function handleMouseMove(event) {
+      const now = Date.now();
+      if (now - lastMouseUpdate < mouseThrottle) return;
+      lastMouseUpdate = now;
+
       const rect = container.getBoundingClientRect();
       const x = (event.clientX - rect.left) / rect.width;
       const y = 1 - (event.clientY - rect.top) / rect.height;
@@ -158,6 +161,10 @@ const LiquidChrome = ({
     }
 
     function handleTouchMove(event) {
+      const now = Date.now();
+      if (now - lastMouseUpdate < mouseThrottle) return;
+      lastMouseUpdate = now;
+
       if (event.touches.length > 0) {
         const touch = event.touches[0];
         const rect = container.getBoundingClientRect();
@@ -170,23 +177,53 @@ const LiquidChrome = ({
     }
 
     if (interactive) {
-      container.addEventListener("mousemove", handleMouseMove);
-      container.addEventListener("touchmove", handleTouchMove);
+      container.addEventListener("mousemove", handleMouseMove, {
+        passive: true,
+      });
+      container.addEventListener("touchmove", handleTouchMove, {
+        passive: true,
+      });
     }
 
-    let animationId;
+    // Intersection Observer para pausar quando fora da tela
+    const observer = new IntersectionObserver(
+      (entries) => {
+        isVisibleRef.current = entries[0].isIntersecting;
+      },
+      { threshold: 0.1 },
+    );
+    observer.observe(container);
+
+    // Limitar FPS para economizar recursos
+    let lastFrameTime = 0;
+    const targetFPS = 30; // Reduzido de 60 para 30 FPS
+    const frameInterval = 1000 / targetFPS;
+
     function update(t) {
-      animationId = requestAnimationFrame(update);
+      rafIdRef.current = requestAnimationFrame(update);
+
+      // Pausar se não visível
+      if (!isVisibleRef.current) return;
+
+      // Limitar FPS
+      const elapsed = t - lastFrameTime;
+      if (elapsed < frameInterval) return;
+
+      lastFrameTime = t - (elapsed % frameInterval);
       program.uniforms.uTime.value = t * 0.001 * speed;
       renderer.render({ scene: mesh });
     }
-    animationId = requestAnimationFrame(update);
+    rafIdRef.current = requestAnimationFrame(update);
 
     container.appendChild(gl.canvas);
 
     return () => {
-      cancelAnimationFrame(animationId);
-      window.removeEventListener("resize", resize);
+      if (rafIdRef.current) {
+        cancelAnimationFrame(rafIdRef.current);
+      }
+      observer.disconnect();
+      clearTimeout(resizeTimeout);
+      window.removeEventListener("resize", handleResize);
       if (interactive) {
         container.removeEventListener("mousemove", handleMouseMove);
         container.removeEventListener("touchmove", handleTouchMove);
@@ -206,4 +243,4 @@ const LiquidChrome = ({
   );
 };
 
-export default LiquidChrome;
+export default memo(LiquidChrome);
