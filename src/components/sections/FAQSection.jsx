@@ -6,7 +6,7 @@ const faqData = [
   {
     question: "O que está incluso na inscrição?",
     answer:
-      "O valor da inscrição inclui o Kit Inpactado e a participação nos 3 dias de evento presencial.",
+      "O valor da inscrição inclui o Kit Inpactado e a participação nos 2 dias de evento presencial.",
   },
   {
     question: "Até quando posso me inscrever?",
@@ -15,7 +15,7 @@ const faqData = [
   },
   {
     question: "Posso parcelar o valor da inscrição?",
-    answer: "Sim! Parcelamos em até 4x sem juros.",
+    answer: "SIM! Parcelamos o valor do ingresso em até 6x sem juros.",
   },
   {
     question: "Como cancelar minha inscrição?",
@@ -25,16 +25,6 @@ const faqData = [
   {
     question: "Posso transferir minha inscrição?",
     answer: "Não é permitida a transferência de inscrição.",
-  },
-  {
-    question: "Tem desconto para caravana?",
-    answer:
-      'Sim! Forme uma caravana e ganhe desconto por pessoa:\n\n5 pessoas = R$ 15 OFF\n10 pessoas = R$ 25 OFF\n15 ou mais = R$ 30 OFF\n\nO líder da caravana deve enviar um e-mail para conferenciainpacto@gmail.com com o assunto "CARAVANA - Nome do Líder" e colocar no corpo do e-mail nome completo + CPF de todos os participantes. Você receberá um cupom exclusivo para usar no momento da inscrição.\n\n*Ninguém do grupo pode se inscrever individualmente antes de receber o cupom.',
-  },
-  {
-    question: "O prazo de pagamento da minha inscrição passou, o que fazer?",
-    answer:
-      "Entre em contato conosco via conferenciainpacto@gmail.com e iremos gerar um novo pagamento para você!",
   },
   {
     question: "Terá refeição no local?",

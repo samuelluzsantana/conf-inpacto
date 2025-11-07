@@ -45,7 +45,7 @@ export default function Footer() {
             <div className="flex gap-3 sm:gap-4">
               {/* Instagram */}
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/conferencia.inpacto/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-full bg-white/10 p-2.5 backdrop-blur-sm transition-all hover:scale-110 hover:bg-white/20 active:scale-95 sm:p-3"

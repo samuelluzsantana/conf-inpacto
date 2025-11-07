@@ -7,8 +7,15 @@ import {
   getTitleFromPath,
 } from "../../hooks/useDocumentTitle.ts";
 import { useActiveSection } from "../../hooks/useActiveSection";
-import { useScrollDirection } from "../../hooks/useScrollDirection";
 import { isSectionEnabled } from "../../config/sections";
+
+// Configuração de tamanhos do header - ajuste conforme necessário
+const sizes = {
+  py: "py-[2em]", // Padding vertical (reduzido pela metade de py-6)
+  lgPy: "lg:py-[2.2em]", // Padding vertical desktop (reduzido pela metade de lg:py-[2.9em])
+  gap: "lg:gap-x-2", // Gap entre links (reduzido pela metade de lg:gap-x-4)
+  fontSize: "text-xs", // Tamanho da fonte dos links (reduzido)
+};
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -157,13 +164,7 @@ const Header = () => {
       : "transition-all duration-300 ease-out";
   };
 
-  // Smart scroll header visibility: visible at top or when scrolling up; hidden on scroll down
-  const { direction, isTop } = useScrollDirection({
-    topThreshold: 100,
-    delta: 2,
-  });
-  const isHeaderVisible = isTop || direction === "up" || isMobileMenuOpen;
-
+  // Header sempre visível (fixo)
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -175,16 +176,13 @@ const Header = () => {
     }
   }, [isMobileMenuOpen]);
 
-  // #9952ec
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 bg-[linear-gradient(to_left,#6f00ff,#f85660,#FA1462,#6f00ff)] shadow-lg backdrop-blur-md transition-transform duration-300 ease-in-out will-change-transform ${
-        isHeaderVisible ? "translate-y-0" : "-translate-y-full"
-      }`}
+      className={`fixed inset-x-0 top-0 z-50 bg-[linear-gradient(to_left,#6f00ff,#f85660,#FA1462,#6f00ff)] shadow-lg backdrop-blur-md`}
     >
       <nav
         aria-label="Global"
-        className="mx-auto flex max-w-7xl items-center justify-between px-4 py-6 sm:px-6 lg:px-8 lg:py-[2.9em]"
+        className={`mx-auto flex max-w-7xl items-center justify-between px-4 ${sizes.py} sm:px-6 lg:px-8 ${sizes.lgPy}`}
       >
         {/* Logo */}
         <div className="flex lg:flex-1">
@@ -224,13 +222,13 @@ const Header = () => {
         </div>
 
         {/* Desktop navigation */}
-        <div className="relative hidden lg:flex lg:gap-x-4" ref={navRef}>
+        <div className={`relative hidden lg:flex ${sizes.gap}`} ref={navRef}>
           {navLinks.map((link, index) => (
             <a
               key={link.name}
               href={link.path}
               onClick={(e) => scrollToSection(e, link, index)}
-              className={`relative px-1 py-2 text-sm font-semibold transition-colors duration-200 ${
+              className={`relative px-1 py-2 ${sizes.fontSize} font-semibold transition-colors duration-200 ${
                 activeLink === index
                   ? "text-white"
                   : "text-white hover:text-[#7101fd]"
