@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import CurvedMarquee from "./CurvedMarquee";
-import casaColorida from "../../assets/elementos/26_casa.png";
 
 function CurvedText() {
   const [fontSize, setFontSize] = useState(6); // mobile por padrão
@@ -35,15 +34,6 @@ function CurvedText() {
           interactive={true}
           fontSize={fontSize}
           className="curved-text-gradient"
-        />
-      </div>
-
-      {/* Imagem de ponta a ponta */}
-      <div className="absolute inset-x-0 bottom-[-1em] z-10 w-full">
-        <img
-          src={casaColorida}
-          alt="Casa colorida"
-          className="h-auto w-full object-cover object-bottom"
         />
       </div>
     </section>

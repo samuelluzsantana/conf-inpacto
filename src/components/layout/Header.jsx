@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { useLocation, useNavigate } from "react-router-dom";
 import LogoIcon from "../ui/Logo";
+import { InteractiveHoverButton } from "../ui/InteractiveHoverButton";
 import {
   useDocumentTitle,
   getTitleFromPath,
@@ -221,32 +222,35 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Desktop navigation */}
-        <div className={`relative hidden lg:flex ${sizes.gap}`} ref={navRef}>
-          {navLinks.map((link, index) => (
-            <a
-              key={link.name}
-              href={link.path}
-              onClick={(e) => scrollToSection(e, link, index)}
-              className={`relative px-1 py-2 ${sizes.fontSize} font-semibold transition-colors duration-200 ${
-                activeLink === index
-                  ? "text-white"
-                  : "text-white hover:text-[#7101fd]"
-              }`}
-            >
-              {link.name}
-            </a>
-          ))}
+        {/* Desktop navigation and button container */}
+        <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-x-6">
+          {/* Desktop navigation */}
+          <div className={`relative flex ${sizes.gap}`} ref={navRef}>
+            {navLinks.map((link, index) => (
+              <a
+                key={link.name}
+                href={link.path}
+                onClick={(e) => scrollToSection(e, link, index)}
+                className={`relative px-1 py-2 ${sizes.fontSize} font-semibold transition-colors duration-200 ${
+                  activeLink === index
+                    ? "text-white"
+                    : "text-white hover:text-[#7101fd]"
+                }`}
+              >
+                {link.name}
+              </a>
+            ))}
 
-          {/* Animated underline */}
-          <span
-            className={`absolute bottom-0 h-0.5 bg-white ${getTransitionClass()}`}
-            style={underlineStyle}
-          />
+            {/* Animated underline */}
+            <span
+              className={`absolute bottom-0 h-0.5 bg-white ${getTransitionClass()}`}
+              style={underlineStyle}
+            />
+          </div>
+
+          {/* Buy button */}
+          <InteractiveHoverButton>COMPRE AGORA</InteractiveHoverButton>
         </div>
-
-        {/* Empty div for flex spacing */}
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end"></div>
       </nav>
 
       {/* Mobile menu (portal to escape header transform) */}
@@ -324,7 +328,15 @@ const Header = () => {
                 </nav>
 
                 {/* Footer do menu (opcional) */}
-                <div className="border-t border-inpacto-magenta/30 p-4 sm:p-6">
+                <div className="flex flex-col items-center space-y-4 border-t border-inpacto-magenta/30 p-4 sm:p-6">
+                  <InteractiveHoverButton
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="w-[15em] border-white text-white hover:border-inpacto-magenta"
+                  >
+                    COMPRE AGORA
+                  </InteractiveHoverButton>
                   <p className="text-center text-sm text-white/70">
                     Conferência Inpacto 2026
                   </p>

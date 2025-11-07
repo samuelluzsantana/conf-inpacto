@@ -1,5 +1,6 @@
 import LiquidChrome from "../LiquidChrome";
 import GlassSurface from "../ui/GlassSurface";
+import { InteractiveHoverButton } from "../ui/InteractiveHoverButton";
 
 function ConferenceSection() {
   return (
@@ -95,6 +96,10 @@ function ConferenceSection() {
                   — João 6:35
                 </footer>
               </blockquote>
+
+              <div className="mt-8 flex justify-center">
+                <InteractiveHoverButton>COMPRE AGORA</InteractiveHoverButton>
+              </div>
             </div>
           </div>
         </GlassSurface>
