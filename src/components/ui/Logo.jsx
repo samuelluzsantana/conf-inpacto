@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import logoIcon from "../assets/logos/logo sem tipo.svg";
-import logoFull from "../assets/logos/Logo vetorizado-branco-01.svg";
+import logoIcon from "../../assets/logos/logo sem tipo.svg";
+import logoFull from "../../assets/logos/Logo vetorizado-branco-01.svg";
 
 const LogoIcon = ({ color = "white", size = "default", icon = false }) => {
   // Define os tamanhos

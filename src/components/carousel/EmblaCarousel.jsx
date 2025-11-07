@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import useEmblaCarousel from "embla-carousel-react";
 import { NextButton, PrevButton } from "./EmblaCarouselArrowButtons";
 import { DotButton } from "./EmblaCarouselDotButton";
-import { usePrevNextButtons } from "./hooks/usePrevNextButtons";
-import { useDotButton } from "./hooks/useDotButton";
+import { usePrevNextButtons } from "../hooks/usePrevNextButtons";
+import { useDotButton } from "../hooks/useDotButton";
 
 const TWEEN_FACTOR_BASE = 0.2;
 

@@ -1,84 +1,86 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import LocationSection from "./components/LocationSection";
-import FAQSection from "./components/FAQSection";
-import SpeakersSection from "./components/SpeakersSection";
-import Footer from "./components/Footer";
-import metroBackground from "./assets/backgrounds/metro-background.avif";
+import {
+  Header,
+  Footer,
+  HomeSection,
+  LocationSection,
+  FAQSection,
+  SpeakersSection,
+} from "./components";
+import { isSectionEnabled } from "./config/sections";
 
 function MainContent() {
   return (
     <>
       {/* Seção: INÍCIO */}
-      <section
-        id="inicio"
-        className="relative flex min-h-screen scroll-mt-16 items-center justify-center bg-cover bg-center bg-no-repeat sm:scroll-mt-20"
-        style={{
-          backgroundImage: `linear-gradient(90deg, transparent 0%, #FF8F44 10%, #FA1462 25%, #E23973 45%, #35126A 65%, #4DC1E7 100%), url(${metroBackground})`,
-        }}
-      >
-        <div className="px-4 text-center text-white sm:px-6">
-          <h1 className="mb-4 text-4xl font-bold sm:text-5xl lg:text-6xl">
-            INÍCIO
-          </h1>
-          <p className="text-lg sm:text-xl">Bem-vindo à conferência</p>
-        </div>
-      </section>
+      {isSectionEnabled("inicio") && <HomeSection />}
 
       {/* Seção: A CONFERÊNCIA */}
-      <section
-        id="conferencia"
-        className="from-inpacto-pink to-inpacto-magenta flex min-h-screen scroll-mt-16 items-center justify-center bg-gradient-to-br sm:scroll-mt-20"
-      >
-        <div className="px-4 text-center text-white sm:px-6">
-          <h1 className="mb-4 text-4xl font-bold sm:text-5xl lg:text-6xl">
-            A CONFERÊNCIA
-          </h1>
-          <p className="text-lg sm:text-xl">Informações sobre o evento</p>
-        </div>
-      </section>
+      {isSectionEnabled("conferencia") && (
+        <section
+          id="conferencia"
+          className="flex min-h-screen scroll-mt-16 items-center justify-center bg-gradient-to-br from-inpacto-pink to-inpacto-magenta sm:scroll-mt-20"
+        >
+          <div className="px-4 text-center text-white sm:px-6">
+            <h1 className="mb-4 text-4xl font-bold sm:text-5xl lg:text-6xl">
+              A CONFERÊNCIA
+            </h1>
+            <p className="text-lg sm:text-xl">Informações sobre o evento</p>
+          </div>
+        </section>
+      )}
 
       {/* Seção: BANDAS */}
-      <section
-        id="bandas"
-        className="from-inpacto-magenta to-inpacto-purple flex min-h-screen scroll-mt-16 items-center justify-center bg-gradient-to-br sm:scroll-mt-20"
-      >
-        <div className="px-4 text-center text-white sm:px-6">
-          <h1 className="mb-4 text-4xl font-bold sm:text-5xl lg:text-6xl">
-            BANDAS
-          </h1>
-          <p className="text-lg sm:text-xl">Conheça as bandas que vão tocar</p>
-        </div>
-      </section>
+      {isSectionEnabled("bandas") && (
+        <section
+          id="bandas"
+          className="flex min-h-screen scroll-mt-16 items-center justify-center bg-gradient-to-br from-inpacto-magenta to-inpacto-purple sm:scroll-mt-20"
+        >
+          <div className="px-4 text-center text-white sm:px-6">
+            <h1 className="mb-4 text-4xl font-bold sm:text-5xl lg:text-6xl">
+              BANDAS
+            </h1>
+            <p className="text-lg sm:text-xl">
+              Conheça as bandas que vão tocar
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* Seção: CONVIDADOS */}
-      <SpeakersSection />
+      {isSectionEnabled("convidados") && <SpeakersSection />}
 
       {/* Seção: PROGRAME-SE */}
-      <section
-        id="programe-se"
-        className="bg-inpacto-gradient flex min-h-screen scroll-mt-16 items-center justify-center sm:scroll-mt-20"
-      >
-        <div className="px-4 text-center text-white sm:px-6">
-          <h1 className="mb-4 text-4xl font-bold sm:text-5xl lg:text-6xl">
-            PROGRAME-SE
-          </h1>
-          <p className="text-lg sm:text-xl">Confira a programação completa</p>
-        </div>
-      </section>
+      {isSectionEnabled("programe-se") && (
+        <section
+          id="programe-se"
+          className="flex min-h-screen scroll-mt-16 items-center justify-center bg-inpacto-gradient sm:scroll-mt-20"
+        >
+          <div className="px-4 text-center text-white sm:px-6">
+            <h1 className="mb-4 text-4xl font-bold sm:text-5xl lg:text-6xl">
+              PROGRAME-SE
+            </h1>
+            <p className="text-lg sm:text-xl">Confira a programação completa</p>
+          </div>
+        </section>
+      )}
 
       {/* Seção: LOCALIZAÇÃO */}
-      <div id="localizacao" className="scroll-mt-16 sm:scroll-mt-20">
-        <LocationSection />
-      </div>
+      {isSectionEnabled("localizacao") && (
+        <div id="localizacao" className="scroll-mt-16 sm:scroll-mt-20">
+          <LocationSection />
+        </div>
+      )}
 
       {/* Seção: FAQ */}
-      <div id="faq" className="scroll-mt-16 sm:scroll-mt-20">
-        <FAQSection />
-      </div>
+      {isSectionEnabled("faq") && (
+        <div id="faq" className="scroll-mt-16 sm:scroll-mt-20">
+          <FAQSection />
+        </div>
+      )}
 
       {/* Footer */}
-      <Footer />
+      {isSectionEnabled("footer") && <Footer />}
     </>
   );
 }
