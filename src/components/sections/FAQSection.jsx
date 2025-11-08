@@ -78,10 +78,10 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-gray-50 to-inpacto-sky/10 px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-      <div className="mx-auto max-w-4xl">
+    <section className="bg-gradient-to-br from-gray-50 to-inpacto-sky/10 px-4 py-8 sm:px-6 sm:py-10 lg:h-[50rem] lg:px-8 lg:py-0 lg:flex lg:items-center">
+      <div className="mx-auto w-full max-w-4xl">
         {/* Header */}
-        <div className="mb-8 text-center sm:mb-12">
+        <div className="mb-6 text-center sm:mb-8">
           <h1 className="mb-3 block bg-gradient-to-r from-[#FA1462] via-[#E23973] to-[#6F00FF] bg-clip-text text-4xl font-bold leading-tight text-transparent sm:mb-4 sm:text-5xl md:text-6xl">
             FAQ
           </h1>
@@ -106,7 +106,7 @@ export default function FAQSection() {
         </div>
 
         {/* Contact Section */}
-        <div className="mt-8 text-center sm:mt-12">
+        <div className="mt-6 text-center sm:mt-8">
           <p className="text-sm text-gray-600 sm:text-base">
             Não encontrou a resposta que procurava?
           </p>

@@ -114,11 +114,11 @@ const CountDays = () => {
   return (
     <section
       id="count-days"
-      className="relative flex min-h-screen items-center justify-center bg-white p-4"
+      className="relative flex h-[85vh] items-center justify-center overflow-visible bg-white p-4"
     >
-      <div className="relative z-10 text-center">
-        <div className="mb-12">
-          <h1 className="mb-4 bg-gradient-to-r from-[#FA1462] via-[#E23973] to-[#6F00FF] bg-clip-text text-4xl font-bold text-transparent sm:text-6xl">
+      <div className="relative z-10 w-full max-w-7xl text-center">
+        <div className="mb-12 px-4">
+          <h1 className="mb-4 bg-gradient-to-r from-[#FA1462] via-[#E23973] to-[#6F00FF] bg-clip-text pb-2 text-4xl font-bold leading-tight text-transparent sm:text-6xl">
             Contagem Regressiva
           </h1>
           <p className="text-xl font-light text-gray-700 sm:text-2xl">
@@ -126,7 +126,7 @@ const CountDays = () => {
           </p>
         </div>
 
-        <div className="mb-8 flex flex-wrap justify-center gap-4 sm:gap-6">
+        <div className="mb-8 flex flex-wrap justify-center gap-4 px-4 sm:gap-6 sm:px-8">
           <TimeBox value={timeLeft.days} label="Dias" />
           <TimeBox value={timeLeft.hours} label="Horas" />
           <TimeBox value={timeLeft.minutes} label="Minutos" />

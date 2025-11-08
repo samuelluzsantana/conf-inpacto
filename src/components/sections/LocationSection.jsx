@@ -1,16 +1,16 @@
 export default function LocationSection() {
   return (
-    <section className="to-inpacto-purple/5 min-h-screen bg-gradient-to-br from-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <section className="mt-24 min-h-screen bg-gradient-to-br from-white to-inpacto-purple/5 px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {/* Content Grid */}
         <div className="grid items-start gap-6 sm:gap-8 lg:grid-cols-2 lg:gap-12">
           {/* Left Side - Location Info */}
           <div className="space-y-4 sm:space-y-6">
-            <h1 className="text-inpacto-purple text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
+            <h1 className="text-4xl font-bold leading-tight text-inpacto-purple sm:text-5xl md:text-6xl">
               LOCALIZAÇÃO
             </h1>
 
-            <h2 className="text-inpacto-magenta text-lg font-semibold leading-snug sm:text-xl md:text-2xl">
+            <h2 className="text-lg font-semibold leading-snug text-inpacto-magenta sm:text-xl md:text-2xl">
               IGREJA PRESBITERIANA DE PINHEIROS
             </h2>
 
@@ -23,14 +23,14 @@ export default function LocationSection() {
               href="https://maps.google.com/?q=Av.+Dra.+Ruth+Cardoso,+6151+-+Pinheiros,+São+Paulo+-+SP,+05463-030"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-inpacto-pink hover:text-inpacto-magenta inline-block text-base font-semibold transition-colors hover:underline sm:text-lg"
+              className="inline-block text-base font-semibold text-inpacto-pink transition-colors hover:text-inpacto-magenta hover:underline sm:text-lg"
             >
               Abrir no Google Maps →
             </a>
 
             {/* Como Chegar */}
             <div className="pt-2 sm:pt-4">
-              <h3 className="text-inpacto-purple mb-3 text-xl font-bold sm:mb-4 sm:text-2xl">
+              <h3 className="mb-3 text-xl font-bold text-inpacto-purple sm:mb-4 sm:text-2xl">
                 Como Chegar
               </h3>
 

@@ -123,7 +123,7 @@ function App() {
     <Router>
       <Header />
       {/* Offset content for fixed header (mobile-first) */}
-      <div className="pt-14 sm:pt-16 lg:pt-[1em]">
+      <div className="pt-14 sm:pt-16 lg:pt-[4em]">
         <Routes>
           <Route path="/" element={<MainContent />} />
           <Route path="/conferencia" element={<MainContent />} />

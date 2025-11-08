@@ -12,10 +12,10 @@ import { isSectionEnabled } from "../../config/sections";
 
 // Configuração de tamanhos do header - ajuste conforme necessário
 const sizes = {
-  py: "py-[2em]", // Padding vertical (reduzido pela metade de py-6)
-  lgPy: "lg:py-[2.2em]", // Padding vertical desktop (reduzido pela metade de lg:py-[2.9em])
-  gap: "lg:gap-x-2", // Gap entre links (reduzido pela metade de lg:gap-x-4)
-  fontSize: "text-xs", // Tamanho da fonte dos links (reduzido)
+  py: "py-[1.01em]", // Padding vertical (reduzido pela metade de py-6)
+  lgPy: "lg:py-[1.2em]", // Padding vertical desktop (reduzido ainda mais)
+  gap: "lg:gap-x-1.5 xl:gap-x-2", // Gap entre links - mais compacto em lg, normal em xl
+  fontSize: "text-[0.65rem] md:text-[0.68rem] lg:text-[0.7rem] xl:text-xs", // Tamanho da fonte progressivo
 };
 
 const Header = () => {
@@ -224,7 +224,7 @@ const Header = () => {
         </div>
 
         {/* Desktop navigation and button container */}
-        <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-x-6">
+        <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:gap-x-2 xl:gap-x-6">
           {/* Desktop navigation */}
           <div className={`relative flex ${sizes.gap}`} ref={navRef}>
             {navLinks.map((link, index) => (
@@ -232,7 +232,7 @@ const Header = () => {
                 key={link.name}
                 href={link.path}
                 onClick={(e) => scrollToSection(e, link, index)}
-                className={`relative px-1 py-2 ${sizes.fontSize} font-semibold transition-colors duration-200 ${
+                className={`relative whitespace-nowrap px-1 py-2 ${sizes.fontSize} font-semibold transition-colors duration-200 ${
                   activeLink === index
                     ? "text-white"
                     : "text-white hover:text-[#7101fd]"

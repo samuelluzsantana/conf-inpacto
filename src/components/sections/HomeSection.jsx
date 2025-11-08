@@ -6,7 +6,7 @@ const HomeSection = () => {
   return (
     <section
       id="inicio"
-      className="relative flex w-full scroll-mt-16 overflow-hidden bg-center bg-no-repeat sm:scroll-mt-20 md:mt-[2em] lg:mt-[5em]"
+      className="relative flex w-full scroll-mt-16 overflow-hidden bg-center bg-no-repeat sm:scroll-mt-20"
     >
       {/* Fundo responsivo - Mobile e Desktop */}
       {/* Mobile background */}

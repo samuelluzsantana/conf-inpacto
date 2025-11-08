@@ -3,7 +3,7 @@ import casaColorida from "../../assets/elementos/26_casa.png";
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-white py-20 text-white sm:py-32 lg:py-40">
+    <footer className="relative overflow-hidden bg-white py-6 text-white sm:py-8 lg:py-8">
       {/* Gradiente */}
       <div
         className="absolute inset-0"
@@ -29,19 +29,19 @@ export default function Footer() {
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Logo Inpacto - Reduzida */}
-        <div className="mb-3 flex items-center justify-center sm:mb-4">
+        <div className="mb-1 flex items-center justify-center sm:mb-1.5">
           <img
             src={LogosJuntas}
             alt="Logo Inpacto"
-            className="h-auto w-full max-w-[300px] opacity-90 sm:max-w-[280px] md:max-w-[450px]"
+            className="h-auto w-full max-w-[210px] opacity-90 sm:max-w-[220px] md:max-w-[380px] lg:max-w-[480px] xl:max-w-[520px]"
           />
         </div>
 
         {/* Área inferior */}
         <div>
           {/* Redes Sociais - Centralizadas */}
-          <div className="mb-2 flex justify-center sm:mb-3">
-            <div className="flex gap-2 sm:gap-3">
+          <div className="mb-1 flex justify-center sm:mb-1.5">
+            <div className="flex gap-2 sm:gap-2.5">
               {/* Instagram */}
               <a
                 href="https://www.instagram.com/conferencia.inpacto/"
@@ -113,11 +113,11 @@ export default function Footer() {
           </div>
 
           {/* Linha */}
-          <div className="mb-3 h-px w-full bg-white/30" />
+          <div className="mb-1 h-px w-full bg-white/30" />
 
           {/* Direitos */}
-          <div className="pb-2">
-            <p className="text-center text-[10px] leading-relaxed text-white/80 sm:text-xs md:text-sm">
+          <div className="pb-0">
+            <p className="text-center text-[9px] leading-snug text-white/80 sm:text-[10px] md:text-xs">
               ©2026 Todos os direitos reservados à Igreja Presbiteriana de
               Pinheiros
               <br className="sm:hidden" />

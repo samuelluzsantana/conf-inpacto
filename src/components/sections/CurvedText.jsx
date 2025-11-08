@@ -25,10 +25,10 @@ function CurvedText() {
   return (
     <section
       id="curved-text"
-      className="relative h-[20em] overflow-hidden sm:h-[18em] lg:h-[18.5em]"
+      className="relative h-[8em] overflow-hidden md:h-[15em] lg:h-[12em]"
     >
       {/* Texto curvado no topo */}
-      <div className="absolute left-0 right-0 top-[10em] z-20 flex w-full justify-center pt-0 sm:pt-2 lg:pt-4">
+      <div className="absolute left-0 right-0 top-[2em] z-20 flex w-full justify-center pt-0 sm:pt-2 md:top-[5em] lg:top-[1] lg:pt-4">
         <CurvedMarquee
           marqueeText={text}
           speed={1.2}
