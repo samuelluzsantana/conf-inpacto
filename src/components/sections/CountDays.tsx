@@ -51,11 +51,15 @@ const CountDays = () => {
       "NO LIMITE DA DOPAMINA\n\n" +
         "Nunca sentimos tanto e nunca estivemos tão vazios. Vivemos viciados em estímulos, sempre conectados e sempre cansados.\n\n" +
         "A Conferência InPacto 2026 é um convite para desacelerar, silenciar o excesso e redescobrir a vida que só existe em Cristo.\n\n" +
-        '"Eu sou o pão da vida; aquele que vem a mim não terá fome, e quem crê em mim nunca terá sede." - João 6:35',
+        '"Eu sou o pão da vida; aquele que vem a mim não terá fome, e quem crê em mim nunca terá sede." - João 6:35\n\n' +
+        "Dias: 01 e 02 de Maio de 2026\n" +
+        "Horário: 08h às 21h (aproximadamente)",
     );
-    const location = encodeURIComponent("A definir - Informações em breve");
-    const start = "20260501T090000Z"; // 01 de Maio de 2026, 09:00 UTC
-    const end = "20260501T180000Z"; // 01 de Maio de 2026, 18:00 UTC
+    const location = encodeURIComponent(
+      "IGREJA PRESBITERIANA DE PINHEIROS - Av. Dra. Ruth Cardoso, 6151 - Pinheiros, São Paulo - SP, 05463-030",
+    );
+    const start = "20260501T110000Z"; // 01 de Maio de 2026, 08:00 BRT (UTC-3 = 11:00 UTC)
+    const end = "20260503T000000Z"; // 03 de Maio de 2026, 00:00 UTC (02 de Maio, 21:00 BRT)
 
     const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&location=${location}&dates=${start}/${end}`;
     window.open(url, "_blank");
@@ -122,7 +126,7 @@ const CountDays = () => {
             Contagem Regressiva
           </h1>
           <p className="text-xl font-light text-gray-700 sm:text-2xl">
-            01 de Maio de 2026
+            01 e 02 de Maio de 2026
           </p>
         </div>
 

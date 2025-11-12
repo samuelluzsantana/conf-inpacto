@@ -78,7 +78,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="bg-gradient-to-br from-gray-50 to-inpacto-sky/10 px-4 py-8 sm:px-6 sm:py-10 lg:h-[50rem] lg:px-8 lg:py-0 lg:flex lg:items-center">
+    <section className="bg-gradient-to-br from-gray-50 to-inpacto-sky/10 px-4 py-8 sm:px-6 sm:py-10 lg:flex lg:h-[50rem] lg:items-center lg:px-8 lg:py-0">
       <div className="mx-auto w-full max-w-4xl">
         {/* Header */}
         <div className="mb-6 text-center sm:mb-8">
